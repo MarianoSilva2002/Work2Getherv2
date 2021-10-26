@@ -117,7 +117,7 @@ public class AnioController {
 	{
 		List<Anio> listaAnio;
 		anio.setAnio(anio.getAnio());
-		listaAnio = aService.buscarNombre(anio.getAnio());
+		listaAnio = aService.buscarAnio(anio.getAnio());
 		
 		if(listaAnio.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");

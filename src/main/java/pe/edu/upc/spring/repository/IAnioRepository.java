@@ -12,6 +12,6 @@ import pe.edu.upc.spring.model.Anio;
 @Repository
 public interface IAnioRepository extends JpaRepository<Anio, Integer>{
 
-	@Query("from Anio a where a.nombre like %:nombre%")
-	List<Anio> buscarNombre(@Param("nombre") int nombre);
+	@Query("from Anio a where a.anio like %:anio%")
+	List<Anio> buscarAnio(@Param("anio") int anio);
 }

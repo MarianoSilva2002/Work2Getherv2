@@ -11,5 +11,5 @@ public interface IAnioService {
 	public void eliminar(int idAnio);
 	public Optional<Anio> listarId(int idAnio);
 	public List<Anio> listar();
-	public List<Anio> buscarNombre(int nombre);
+	public List<Anio> buscarAnio(int anio);
 }

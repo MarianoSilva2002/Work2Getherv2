@@ -12,6 +12,6 @@ import pe.edu.upc.spring.model.Mes;
 @Repository
 public interface IMesRepository extends JpaRepository<Mes, Integer>{
 
-	@Query("from Mes m where m.nombre like %:nombre%")
-	List<Mes> buscarNombre(@Param("nombre") String nombre);
+	@Query("from Mes m where m.mes like %:mes%")
+	List<Mes> buscarMes(@Param("mes") String mes);
 }
