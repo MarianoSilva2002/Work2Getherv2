@@ -56,7 +56,7 @@ public class AnioController {
 				return "redirect:/anio/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un accidente, LUZ ROJA");
-				return "redirect:/empresa/irRegistrar";
+				return "redirect:/anio/irRegistrar";
 			}
 		}
 	}

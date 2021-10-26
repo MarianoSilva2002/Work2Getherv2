@@ -57,7 +57,7 @@ public class RolesController {
 				return "redirect:/rol/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un accidente, LUZ ROJA");
-				return "redirect:/empresa/irRegistrar";
+				return "redirect:/rol/irRegistrar";
 			}
 		}
 	}
