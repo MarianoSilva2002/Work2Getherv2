@@ -50,7 +50,7 @@ public class EmpleadoController {
 	
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("listaEmpleados", eService.listar());
+		model.addAttribute("listaJefes", eService.listar());
 		model.addAttribute("listaRoles", rService.listar());
 		
 		model.addAttribute("jefe", new Jefe());
@@ -63,7 +63,7 @@ public class EmpleadoController {
 	public String registrar(@ModelAttribute Empleado objEmpleado, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
 		{
-			model.addAttribute("listaEmpleado", eService.listar());
+			model.addAttribute("listaJefes", eService.listar());
 			model.addAttribute("listaRoles", rService.listar());
 			return "empleado";
 		}
@@ -140,7 +140,7 @@ public class EmpleadoController {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		
-		model.put("listaRoles", listaEmpleados);
+		model.put("listaEmpleados", listaEmpleados);
 		return "buscar";
 	}
 }

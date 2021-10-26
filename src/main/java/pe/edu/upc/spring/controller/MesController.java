@@ -56,7 +56,7 @@ public class MesController {
 				return "redirect:/mes/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un accidente, LUZ ROJA");
-				return "redirect:/empresa/irRegistrar";
+				return "redirect:/mes/irRegistrar";
 			}
 		}
 	}
