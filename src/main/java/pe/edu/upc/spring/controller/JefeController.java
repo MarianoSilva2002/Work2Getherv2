@@ -140,7 +140,7 @@ public class JefeController {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		
-		model.put("listaRoles", listaJefes);
+		model.put("listaJefes", listaJefes);
 		return "buscar";
 	}
 }
