@@ -117,7 +117,7 @@ public class MesController {
 	{
 		List<Mes> listaMes;
 		mes.setMes(mes.getMes());
-		listaMes = mService.buscarNombre(mes.getMes());
+		listaMes = mService.buscarMes(mes.getMes());
 		
 		if(listaMes.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");

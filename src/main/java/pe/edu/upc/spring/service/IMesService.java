@@ -11,5 +11,5 @@ public interface IMesService {
 	public void eliminar(int idMes);
 	public Optional<Mes> listarId(int idMes);
 	public List<Mes> listar();
-	public List<Mes> buscarNombre(String nombre);
+	public List<Mes> buscarMes(String mes);
 }

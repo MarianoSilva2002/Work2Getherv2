@@ -48,8 +48,8 @@ public class AnioServiceImpl implements IAnioService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Anio> buscarNombre(int nombre) {
-		return dAnio.buscarNombre(nombre);
+	public List<Anio> buscarAnio(int anio) {
+		return dAnio.buscarAnio(anio);
 	}
 	
 }

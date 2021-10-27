@@ -48,8 +48,8 @@ public class MesServiceImpl implements IMesService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Mes> buscarNombre(String nombre) {
-		return dMes.buscarNombre(nombre);
+	public List<Mes> buscarMes(String mes) {
+		return dMes.buscarMes(mes);
 	}
 	
 }
