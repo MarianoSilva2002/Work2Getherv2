@@ -9,6 +9,7 @@ import pe.edu.upc.spring.model.Empleado_KPI;
 
 public interface IEmpleadoKPIRepository {
 
-	@Query("from Empleado_KPI  where e.nombre like %:nombre%")
-	List<Empleado_KPI> buscarNombre(@Param("nombre") String nombre);
+	@Query("from Empleado_KPI where p.Empleado_KPI like %:Empleado_KPI%")
+	List<Empleado_KPI> buscarEmpleado_KPI(@Param("Empleado_KPI") String Empleado_KPI);
+
 }
