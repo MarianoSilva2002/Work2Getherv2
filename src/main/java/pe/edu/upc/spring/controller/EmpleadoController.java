@@ -39,13 +39,13 @@ public class EmpleadoController {
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
-		return "bienvenido"; //"bienvenido" es una pagina del frontend
+		return "bienvenido"; //"bienvenido" es una pagina del frontend...
 	}
 	
 	@RequestMapping("/")
 	public String irPaginaListadoEmpleados(Map<String, Object> model) {
 		model.put("listaEmpleados", jService.listar());
-		return "listEmpleados"; //"listEmpleados" es una pagina del frontend
+		return "listEmpleados"; //"listEmpleados" es una pagina del frontend...
 	}
 	
 	@RequestMapping("/irRegistrar")
