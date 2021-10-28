@@ -39,13 +39,13 @@ public class JefeController {
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
-		return "bienvenido"; //"bienvenido" es una pagina del frontend...
+		return "bienvenido"; //"bienvenido" es una pagina del frontend.
 	}
 	
 	@RequestMapping("/")
 	public String irPaginaListadoJefes(Map<String, Object> model) {
 		model.put("listaJefes", jService.listar());
-		return "listJefes"; //"listJefes" es una pagina del frontend...
+		return "listJefes"; //"listJefes" es una pagina del frontend.
 	}
 	
 	@RequestMapping("/irRegistrar")
@@ -56,7 +56,7 @@ public class JefeController {
 		model.addAttribute("empresa", new Empresa());
 		model.addAttribute("rol", new Roles());
 		model.addAttribute("jefe", new Jefe());
-		return "jefe"; //"jefe" es una pagina del frontend para insertar y/o modificar...
+		return "jefe"; //"jefe" es una pagina del frontend para insertar y/o modificar.
 	}
 	
 	@RequestMapping("/registrar")
