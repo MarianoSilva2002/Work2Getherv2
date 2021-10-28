@@ -48,8 +48,8 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Empleado> buscarNombre(String nombre) {
-		return dEmpleado.buscarNombre(nombre);
+	public List<Empleado> buscarEmpleado(String empleado) {
+		return dEmpleado.buscarEmpleado(empleado);
 	}
 	
 }
