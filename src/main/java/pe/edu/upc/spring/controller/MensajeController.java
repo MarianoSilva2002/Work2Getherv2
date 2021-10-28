@@ -30,19 +30,19 @@ public class MensajeController {
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
-		return "bienvenido"; //"bienvenido" es una pagina del frontend
+		return "bienvenido"; //"bienvenido" es una pagina del frontend...
 	}
 	
 	@RequestMapping("/")
 	public String irPaginaListadoMascotas(Map<String, Object> model) {
 		model.put("listaMensajes", eService.listar());
-		return "listMensajes"; //"listMensajes" es una pagina del frontend
+		return "listMensajes"; //"listMensajes" es una pagina del frontend...
 	}
 	
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("mensaje", new Mensajes());
-		return "mensaje"; //"mensaje" es una pagina del frontend para insertar y/o modificar
+		return "mensaje"; //"mensaje" es una pagina del frontend para insertar y/o modificar...
 	}
 	
 	@RequestMapping("/registrar")
