@@ -11,5 +11,4 @@ public interface IEmpleadoKPIService {
 	public void eliminar(int idEmpleado_KPI);
 	public Optional<Empleado_KPI> listarId(int idEmpleado_KPI);
 	public List<Empleado_KPI> listar();
-	public List<Empleado_KPI> buscarEmpleado_KPI(String Empleado_KPI);
 }

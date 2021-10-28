@@ -46,11 +46,6 @@ public class EmpleadoKPIServiceImpl implements IEmpleadoKPIService{
 		return dEmpleado_KPI.findAll();
 	}
 
-	@Override
-	@Transactional(readOnly = true)
-	public List<Empleado_KPI> buscarEmpleado_KPI(String empleado_KPI) {
-		return dEmpleado_KPI.buscarEmpleado_KPI(empleado_KPI);
-	}
 	
 }
 

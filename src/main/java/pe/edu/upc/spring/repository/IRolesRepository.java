@@ -12,7 +12,7 @@ import pe.edu.upc.spring.model.Roles;
 @Repository
 public interface IRolesRepository extends JpaRepository<Roles, Integer>{
 
-	@Query("from Roles r where r.nombre like %:nombre%")
+	@Query("from Roles r where r.Nombre like %:nombre%")
 	List<Roles> buscarNombre(@Param("nombre") String nombre);	
 
 }

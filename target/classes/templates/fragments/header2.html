@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8"></meta>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+</link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+</head>
+
+<body>
+	<!-- th:fragment define un fragment los cuales sirven para evitar la redundancia de codigo -->
+	<!-- Sintaxis th:fragment="Nombre del fragment" -->
+	<div th:fragment="header">
+		<!-- this is header -->
+		<nav class="navbar navbar-expand-sm bg-warning navbar-dark fixed-top">
+			<a class="navbar-brand" href="#">Tec Group</a>
+			<!-- Toggler/collapsibe Button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Navbar links -->
+			<div
+				class="collapse navbar-collapse justify-content-end text-white font-weight-bold"
+				id="collapsibleNavbar">
+				<ul class="navbar-nav ">
+					<li class="nav-item active"><a class="nav-link" href="#">Roles</a>
+					</li>
+					<li class="nav-item active"><a class="nav-link" href="#">Empleados</a>
+					</li>
+					<li class="nav-item active"><a class="nav-link" href="#">Actividades</a>
+					</li>
+					<li class="nav-item active"><a class="nav-link" href="#">KPIs</a>
+					</li>
+					<li class="nav-item active"><a class="nav-link" href="#">Productividad</a>
+					</li>
+					<li class="nav-item active"><a class="nav-link" href="#">Cerrar
+							Sesion</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+</body>
+
+</html>

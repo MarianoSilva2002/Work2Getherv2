@@ -12,10 +12,10 @@ import pe.edu.upc.spring.model.Empresa;
 @Repository
 public interface IEmpresaRepository extends JpaRepository<Empresa, Integer>{
 
-	@Query("from Empresa e where e.nombre like %:nombre%")
+	@Query("from Empresa e where e.Nombre like %:nombre%")
 	List<Empresa> buscarNombre(@Param("nombre") String nombre);
 	
-	@Query("from Empresa e where e.distrito like %:distrito%")
+	@Query("from Empresa e where e.Distrito like %:distrito%")
 	List<Empresa> buscarDistrito(@Param("distrito") String distrito);
 	
 
