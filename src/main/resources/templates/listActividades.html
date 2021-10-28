@@ -64,19 +64,15 @@
 
 
 	<div class="container text-center">
-		<button type="button" class="btn btn-primary ">Crear
-			actividad</button>
 		<button type="button" class="btn btn-primary ">Actividades
 			Realizadas</button>
-		<button type="button" class="btn btn-primary ">Editar
-			actividad</button>
 	</div>
 	<br>
 	<br>
 	<br>
 	<div class="container">
 		<div class="d-inline-flex flex-row">
-			<a type="button" class="btn btn-primary mr-3">Agregar</a> <a
+			<a type="button" class="btn btn-primary mr-3" th:href="@{/actividad/irRegistrar}">Agregar</a> <a
 				type="button" class="btn btn-primary" data-toggle="modal"
 				data-target="#myModal">Filtrar</a>
 		</div>
@@ -150,13 +146,16 @@
 				</thead>
 				<tbody>
 					<tr th:each="a: ${listaActividades}">
-						<td th:text="${a.idPet}"></td>
-						<td th:text="${a.namePet}"></td>
-						<td th:text="${#dates.format(pet.birthDatePet,'dd/MM/yyyy')}"></td>
-						<td th:text="${a.raza.nameRace}"></td>
-						<td th:text="${a.dueno.nameMaster}"></td>
-						<td><a th:href="@{/actividad/eliminar?id=}+${pet.idPet}">Eliminar</a></td>
-						<td><a th:href="@{'/actividad/modificar/'}+${pet.idPet}">Modificar</a></td>
+						<td th:text="${a.Nombre}"></td>
+						<td th:text="${a.Descripcion}"></td>
+						<td th:text="${a.HorasEstimadas}"></td>	
+						<td th:text="${#dates.format(pet.HorasInvertidas,'dd/MM/yyyy')}"></td>					
+						<td th:text="${#dates.format(pet.FechaLimite,'dd/MM/yyyy')}"></td>
+						<td th:text="${a.Estado}"></td>
+						<td th:text="${a.Prioridad}"></td>
+						<td th:text="${a.empleado.Nombre}"></td>
+						<td><a th:href="@{/actividad/eliminar?id=}+${a.idActividad}">Eliminar</a></td>
+						<td><a th:href="@{'/actividad/modificar/'}+${a.idActividad}">Modificar</a></td>
 					</tr>
 				</tbody>
 			</table>

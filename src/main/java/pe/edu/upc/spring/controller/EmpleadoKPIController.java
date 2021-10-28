@@ -145,30 +145,30 @@ public class EmpleadoKPIController {
 		return "buscar";
 	}
 	
-	@RequestMapping("/buscar")
-	public String buscar(Map<String, Object> model, @ModelAttribute Empleado_KPI empleado_KPI) throws ParseException 
-	{
-		List<Empleado_KPI> listaEmpleado_KPI;
-		Empleado_KPI.setNombre(Empleado_KPI.getNombre());
-		listaEmpleado_KPI = vService.buscarNombre(empleado_KPI.getNombre());
-		
-		if(listaEmpleado_KPI.isEmpty()) {
-			listaEmpleado_KPI = vService.buscarAnio(Empleado_KPI.getNombre());
-		}
-		if(listaEmpleado_KPI.isEmpty()) {
-			listaEmpleado_KPI = vService.buscarMes(Empleado_KPI.getNombre());
-		}
-		if(listaEmpleado_KPI.isEmpty()) {
-			listaEmpleado_KPI = vService.buscarEmpleado(Empleado_KPI.getNombre());
-		}
-		if(listaEmpleado_KPI.isEmpty()) {
-			listaEmpleado_KPI = vService.buscarKPI(Empleado_KPI.getNombre());
-		}	
-		if(listaEmpleado_KPI.isEmpty()) {
-			model.put("mensaje", "No existen coincidencias");
-		}
-		
-		model.put("listaEmpleado_KPI", listaEmpleado_KPI);
-		return "buscar";
-	}
+	//@RequestMapping("/buscar")
+	//public String buscar(Map<String, Object> model, @ModelAttribute Empleado_KPI empleado_KPI) throws ParseException 
+	//{
+	//	List<Empleado_KPI> listaEmpleado_KPI;
+	//	Empleado_KPI.setNombre(empleado_KPI.getNombre());
+	//	listaEmpleado_KPI = vService.buscarNombre(empleado_KPI.getNombre());
+	//	
+	//	if(listaEmpleado_KPI.isEmpty()) {
+	//		listaEmpleado_KPI = vService.buscarAnio(empleado_KPI.getNombre());
+	//	}
+	//	if(listaEmpleado_KPI.isEmpty()) {
+	//		listaEmpleado_KPI = vService.buscarMes(empleado_KPI.getNombre());
+	//	}
+	//	if(listaEmpleado_KPI.isEmpty()) {
+	//		listaEmpleado_KPI = vService.buscarEmpleado(empleado_KPI.getNombre());
+	//	}
+	//	if(listaEmpleado_KPI.isEmpty()) {
+	//		listaEmpleado_KPI = vService.buscarKPI(empleado_KPI.getNombre());
+	//	}	
+	//	if(listaEmpleado_KPI.isEmpty()) {
+	//		model.put("mensaje", "No existen coincidencias");
+	//	}
+	//	
+	//	model.put("listaEmpleado_KPI", listaEmpleado_KPI);
+	//	return "buscar";
+	//}
 }

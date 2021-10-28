@@ -13,18 +13,16 @@ import pe.edu.upc.spring.model.KPI;
 import pe.edu.upc.spring.model.Mes;
 
 public interface IEmpleadoKPIRepository extends JpaRepository<Empleado_KPI, Integer>{
-	@Query("from Empleado_KPI v where v.empleado_KPI like %:empleado_KPI%")
-	List<Empleado_KPI> buscarEmpleado_KPI(@Param("empleado_KPI") String empleado_KPI);
 	
-	@Query("from KPI k where k.KPI like %:kPI%")
+	@Query("from Empleado_KPI k where k.kpi.Nombre like %:kPI%")
 	List<Empleado_KPI> buscarKPI(@Param("kPI") String kPI);
 	
-	@Query("from Anio a where a.anio like %:anio%")
+	@Query("from Empleado_KPI a where a.anio.anio like %:anio%")
 	List<Empleado_KPI> buscarAnio(@Param("anio") int anio);
 	
-	@Query("from Empleado j where j.empleado like %:empleado%")
+	@Query("from Empleado_KPI j where j.empleado.nombre like %:empleado%")
 	List<Empleado_KPI> buscarEmpleado(@Param("empleado") String empleado);	
 	
-	@Query("from Mes m where m.mes like %:mes%")
+	@Query("from Empleado_KPI m where m.mes.mes like %:mes%")
 	List<Empleado_KPI> buscarMes(@Param("mes") String mes);	
 }

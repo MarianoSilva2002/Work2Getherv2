@@ -68,6 +68,11 @@ public class ActividadController {
 			return "actividad";
 		}
 		else {
+			TiempoActividad ta = new TiempoActividad();
+			taService.grabar(ta);
+			objActividad.setTiempo(taService.listar().get(taService.listar().size()-1));
+			objActividad.setEstado("Pendiente");
+			System.out.println(objActividad.getEmpleado().getNombre());
 			boolean flag = aService.grabar(objActividad);
 			if(flag)
 				return "redirect:/actividad/listar";

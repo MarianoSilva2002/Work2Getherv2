@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="Actividad")
@@ -35,7 +39,9 @@ public class Actividad implements Serializable{
 	@Column(name="HorasInvertidas", nullable = true)
 	private Date HorasInvertidas;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="FechaLimite", nullable = false)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date FechaLimite;
 	
 	@Column(name="Prioridad", nullable = false)
@@ -150,6 +156,79 @@ public class Actividad implements Serializable{
 
 	public void setTiempo(TiempoActividad tiempo) {
 		this.tiempo = tiempo;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((Descripcion == null) ? 0 : Descripcion.hashCode());
+		result = prime * result + ((Estado == null) ? 0 : Estado.hashCode());
+		result = prime * result + ((FechaLimite == null) ? 0 : FechaLimite.hashCode());
+		result = prime * result + HorasEstimadas;
+		result = prime * result + ((HorasInvertidas == null) ? 0 : HorasInvertidas.hashCode());
+		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
+		result = prime * result + ((Prioridad == null) ? 0 : Prioridad.hashCode());
+		result = prime * result + ((empleado == null) ? 0 : empleado.hashCode());
+		result = prime * result + idActividad;
+		result = prime * result + ((tiempo == null) ? 0 : tiempo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Actividad other = (Actividad) obj;
+		if (Descripcion == null) {
+			if (other.Descripcion != null)
+				return false;
+		} else if (!Descripcion.equals(other.Descripcion))
+			return false;
+		if (Estado == null) {
+			if (other.Estado != null)
+				return false;
+		} else if (!Estado.equals(other.Estado))
+			return false;
+		if (FechaLimite == null) {
+			if (other.FechaLimite != null)
+				return false;
+		} else if (!FechaLimite.equals(other.FechaLimite))
+			return false;
+		if (HorasEstimadas != other.HorasEstimadas)
+			return false;
+		if (HorasInvertidas == null) {
+			if (other.HorasInvertidas != null)
+				return false;
+		} else if (!HorasInvertidas.equals(other.HorasInvertidas))
+			return false;
+		if (Nombre == null) {
+			if (other.Nombre != null)
+				return false;
+		} else if (!Nombre.equals(other.Nombre))
+			return false;
+		if (Prioridad == null) {
+			if (other.Prioridad != null)
+				return false;
+		} else if (!Prioridad.equals(other.Prioridad))
+			return false;
+		if (empleado == null) {
+			if (other.empleado != null)
+				return false;
+		} else if (!empleado.equals(other.empleado))
+			return false;
+		if (idActividad != other.idActividad)
+			return false;
+		if (tiempo == null) {
+			if (other.tiempo != null)
+				return false;
+		} else if (!tiempo.equals(other.tiempo))
+			return false;
+		return true;
 	}
 	
 }

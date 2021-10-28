@@ -48,11 +48,6 @@ public class EmpleadoKPIServiceImpl implements IEmpleadoKPIService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Empleado_KPI> buscarEmpleado_KPI(String empleado_KPI) {
-		return vEmpleado_KPI.buscarEmpleado_KPI(empleado_KPI);
-	}
-	@Override
-	@Transactional(readOnly = true)
 	public List<Empleado_KPI> buscarAnio(int anio) {
 		return vEmpleado_KPI.buscarAnio(anio);
 	}
