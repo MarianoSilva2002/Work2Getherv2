@@ -13,12 +13,12 @@ import pe.edu.upc.spring.model.Actividad;
 @Repository
 public interface IActividadRepository extends JpaRepository<Actividad, Integer>{
 	
-	@Query("from Actividad a where a.nombre like %:nombre%")
+	@Query("from Actividad a where a.Nombre like %:nombre%")
 	List<Actividad> buscarNombre(@Param("nombre") String nombre);
 	
-	@Query("from Actividad a where a.estado like %:estado%")
+	@Query("from Actividad a where a.Estado like %:estado%")
 	List<Actividad> buscarEstado(@Param("estado") String estado);
 	
-	@Query("from Actividad a where a.prioridad = 1")
+	@Query("from Actividad a where a.Prioridad = 1")
 	List<Actividad> buscarPrioritario();
 }

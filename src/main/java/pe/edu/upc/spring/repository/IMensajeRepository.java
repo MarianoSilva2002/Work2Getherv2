@@ -12,7 +12,7 @@ import pe.edu.upc.spring.model.Mensajes;
 @Repository
 public interface IMensajeRepository extends JpaRepository<Mensajes, Integer>{
 
-	@Query("from Mensajes e where e.mensaje like %:Mensaje%")
+	@Query("from Mensajes e where e.Mensaje like %:mensaje%")
 	List<Mensajes> buscarMensaje(@Param("mensaje") String mensaje);
 	
 	
