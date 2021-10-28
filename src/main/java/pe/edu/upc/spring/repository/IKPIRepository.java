@@ -12,7 +12,7 @@ import pe.edu.upc.spring.model.KPI;
 @Repository
 public interface IKPIRepository extends JpaRepository<KPI, Integer>{
 
-	@Query("from KPI k where k.KPI like %:kPI%")
+	@Query("from KPI k where k.Nombre like %:kPI%")
 	List<KPI> buscarKPI(@Param("kPI") String kPI);	
 
 }
