@@ -12,5 +12,5 @@ public interface IEmpleadoService {
 	public void eliminar(int idEmpleado);
 	public Optional<Empleado> listarId(int idEmpleado);
 	public List<Empleado> listar();
-	public List<Empleado> buscarNombre(String nombre);
+	public List<Empleado> buscarEmpleado(String empleado);
 	}

@@ -20,11 +20,13 @@ import pe.edu.upc.spring.model.Empleado;
 import pe.edu.upc.spring.model.Mes;
 import pe.edu.upc.spring.model.Anio;
 import pe.edu.upc.spring.model.KPI;
+import pe.edu.upc.spring.model.Empleado_KPI;
 
 import pe.edu.upc.spring.service.IEmpleadoService;
 import pe.edu.upc.spring.service.IMesService;
 import pe.edu.upc.spring.service.IAnioService;
 import pe.edu.upc.spring.service.IKPIService;
+import pe.edu.upc.spring.service.IEmpleadoKPIService;
 
 @Controller
 @RequestMapping("/empleado_KPI")
@@ -37,7 +39,13 @@ public class EmpleadoKPIController {
 	private IAnioService aService;
 	
 	@Autowired
+	private IKPIService kService;
+	
+	@Autowired
 	private IEmpleadoService jService;
+	
+	@Autowired
+	private IEmpleadoKPIService vService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -45,51 +53,57 @@ public class EmpleadoKPIController {
 	}
 	
 	@RequestMapping("/")
-	public String irPaginaListadoEmpleados(Map<String, Object> model) {
-		model.put("listaEmpleados", jService.listar());
+	public String irPaginaListadoEmpleado_KPI(Map<String, Object> model) {
+		model.put("listaEmpleado_KPI", vService.listar());
 		return "listEmpleados"; //"listEmpleados" es una pagina del frontend
 	}
 	
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("listaJefes", eService.listar());
-		model.addAttribute("listaRoles", rService.listar());
+		model.addAttribute("listaEmpleados", jService.listar());
+		model.addAttribute("listaMes", mService.listar());
+		model.addAttribute("listaAnios", aService.listar());
+		model.addAttribute("listaKPI", kService.listar());
 		
-		model.addAttribute("jefe", new Jefe());
-		model.addAttribute("rol", new Roles());
-		model.addAttribute("empleado", new Empleado());
-		return "Empleado"; //"Empleado" es una pagina del frontend para insertar y/o modificar
+		model.addAttribute("Empleados", new Empleado());
+		model.addAttribute("Anios", new Anio());
+		model.addAttribute("Mes", new Mes());
+		model.addAttribute("KPI", new KPI());
+		model.addAttribute("Empleado_KPI", new Empleado_KPI());
+		return "empleado_KPI"; //"Empleado" es una pagina del frontend para insertar y/o modificar
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Empleado objEmpleado, BindingResult binRes, Model model) throws ParseException{
+	public String registrar(@ModelAttribute Empleado_KPI objEmpleado_KPI, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
 		{
-			model.addAttribute("listaJefes", eService.listar());
-			model.addAttribute("listaRoles", rService.listar());
-			return "empleado";
+			model.addAttribute("listaEmpleados", jService.listar());
+			model.addAttribute("listaMes", mService.listar());
+			model.addAttribute("listaAnios", aService.listar());
+			model.addAttribute("listaKPI", kService.listar());
+			return "Empleado_KPI";
 		}
 		else {
-			boolean flag = jService.grabar(objEmpleado);
+			boolean flag = vService.grabar(objEmpleado_KPI);
 			if(flag)
-				return "redirect:/empleado/listar";
+				return "redirect:/Empleado_KPI/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un accidente, LUZ ROJA");
-				return "redirect:/empleado/irRegistrar";
+				return "redirect:/empleado_KPI/irRegistrar";
 			}
 		}
 	}
 	
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException{
-		Optional<Empleado> objEmpleado = jService.listarId(id);
-		if(objEmpleado == null) {
+		Optional<Empleado_KPI> objEmpleado_KPI = vService.listarId(id);
+		if(objEmpleado_KPI == null) {
 			objRedir.addFlashAttribute("mensaje","Ocurrio un roche, LUZ ROJA");
-			return "redirect:/empleado/listar";
+			return "redirect:/empleado_KPI/listar";
 		}
 		else {
-			if(objEmpleado.isPresent())
-				objEmpleado.ifPresent(o -> model.addAttribute("empleado",o));
+			if(objEmpleado_KPI.isPresent())
+				objEmpleado_KPI.ifPresent(o -> model.addAttribute("Empleado_KPI",o));
 			
 			return "empleado";
 		}
@@ -99,50 +113,62 @@ public class EmpleadoKPIController {
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		try {
 			if(id!=null && id>0) {
-				jService.eliminar(id);
-				model.put("listaEmpleados", jService.listar());
+				vService.eliminar(id);
+				model.put("listaEmpleado_KPI", vService.listar());
 			}
 		}
 		catch(Exception ex){
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
-			model.put("listaEmpleados", jService.listar());
+			model.put("listaEmpleado_KPI", vService.listar());
 		}
-		return "listEmpleados";
+		return "listEmpleado_KPI";
 	}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
-		model.put("listaEmpleados", jService.listar());
-		return "listEmpleados";
+		model.put("listaEmpleado_KPI", vService.listar());
+		return "listEmpleado_KPI";
 	}
 	
 	@RequestMapping("/listarId")
-	public String listarId(Map<String, Object> model, @ModelAttribute Empleado empleado) throws ParseException 
+	public String listarId(Map<String, Object> model, @ModelAttribute Empleado_KPI empleado_KPI) throws ParseException 
 	{
-		jService.listarId(empleado.getIdEmpleado());
-		return "listEmpleados";
+		vService.listarId(empleado_KPI.getIdEmpleado_KPI());
+		return "listEmpleado_KPI";
 	}
 	
 	@RequestMapping("/irBuscar")
 	public String irBuscar(Model model) throws ParseException 
 	{
-		model.addAttribute("empleado", new Empleado());
+		model.addAttribute("empleado_KPI", new Empleado_KPI());
 		return "buscar";
 	}
 	
 	@RequestMapping("/buscar")
-	public String buscar(Map<String, Object> model, @ModelAttribute Empleado empleado) throws ParseException 
+	public String buscar(Map<String, Object> model, @ModelAttribute Empleado_KPI empleado_KPI) throws ParseException 
 	{
-		List<Empleado> listaEmpleados;
-		empleado.setNombre(empleado.getNombre());
-		listaEmpleados = jService.buscarNombre(empleado.getNombre());
+		List<Empleado_KPI> listaEmpleado_KPI;
+		Empleado_KPI.setNombre(Empleado_KPI.getNombre());
+		listaEmpleado_KPI = vService.buscarNombre(empleado_KPI.getNombre());
 		
-		if(listaEmpleados.isEmpty()) {
+		if(listaEmpleado_KPI.isEmpty()) {
+			listaEmpleado_KPI = vService.buscarAnio(Empleado_KPI.getNombre());
+		}
+		if(listaEmpleado_KPI.isEmpty()) {
+			listaEmpleado_KPI = vService.buscarMes(Empleado_KPI.getNombre());
+		}
+		if(listaEmpleado_KPI.isEmpty()) {
+			listaEmpleado_KPI = vService.buscarEmpleado(Empleado_KPI.getNombre());
+		}
+		if(listaEmpleado_KPI.isEmpty()) {
+			listaEmpleado_KPI = vService.buscarKPI(Empleado_KPI.getNombre());
+		}	
+		if(listaEmpleado_KPI.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		
-		model.put("listaEmpleados", listaEmpleados);
+		model.put("listaEmpleado_KPI", listaEmpleado_KPI);
 		return "buscar";
 	}
 }

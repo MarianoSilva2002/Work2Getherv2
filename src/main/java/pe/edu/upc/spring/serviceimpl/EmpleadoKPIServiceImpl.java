@@ -15,12 +15,12 @@ import pe.edu.upc.spring.service.IEmpleadoKPIService;
 public class EmpleadoKPIServiceImpl implements IEmpleadoKPIService{
 
 	@Autowired
-	private IEmpleadoKPIRepository dEmpleado_KPI;
+	private IEmpleadoKPIRepository vEmpleado_KPI;
 	
 	@Override
 	@Transactional
 	public boolean grabar(Empleado_KPI empleado_KPI) {
-		Empleado_KPI objEmpleado_KPI = dEmpleado_KPI.save(empleado_KPI);
+		Empleado_KPI objEmpleado_KPI = vEmpleado_KPI.save(empleado_KPI);
 		if(objEmpleado_KPI == null)
 			return false;
 		else
@@ -31,21 +31,46 @@ public class EmpleadoKPIServiceImpl implements IEmpleadoKPIService{
 	@Override
 	@Transactional
 	public void eliminar(int idEmpleado_KPI) {
-		dEmpleado_KPI.deleteById(idEmpleado_KPI);
+		vEmpleado_KPI.deleteById(idEmpleado_KPI);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Optional<Empleado_KPI> listarId(int idEmpleado_KPI) {
-		return dEmpleado_KPI.findById(idEmpleado_KPI);
+		return vEmpleado_KPI.findById(idEmpleado_KPI);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public List<Empleado_KPI> listar() {
-		return dEmpleado_KPI.findAll();
+		return vEmpleado_KPI.findAll();
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public List<Empleado_KPI> buscarEmpleado_KPI(String empleado_KPI) {
+		return vEmpleado_KPI.buscarEmpleado_KPI(empleado_KPI);
+	}
+	@Override
+	@Transactional(readOnly = true)
+	public List<Empleado_KPI> buscarAnio(int anio) {
+		return vEmpleado_KPI.buscarAnio(anio);
+	}
+	@Override
+	@Transactional(readOnly = true)
+	public List<Empleado_KPI> buscarMes(String mes) {
+		return vEmpleado_KPI.buscarMes(mes);
+	}
+	@Override
+	@Transactional(readOnly = true)
+	public List<Empleado_KPI> buscarKPI(String kPI) {
+		return vEmpleado_KPI.buscarKPI(kPI);
+	}
+	@Override
+	@Transactional(readOnly = true)
+	public List<Empleado_KPI> buscarEmpleado(String empleado) {
+		return vEmpleado_KPI.buscarEmpleado(empleado);
+	}
 	
 }
 

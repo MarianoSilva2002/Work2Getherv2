@@ -48,8 +48,8 @@ public class KPIServiceImpl implements IKPIService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<KPI> buscarKPI(String nombre) {
-		return dKPI.buscarKPI(nombre);
+	public List<KPI> buscarKPI(String kPI) {
+		return dKPI.buscarKPI(kPI);
 	}
 	
 }

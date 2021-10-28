@@ -134,7 +134,7 @@ public class EmpleadoController {
 	{
 		List<Empleado> listaEmpleados;
 		empleado.setNombre(empleado.getNombre());
-		listaEmpleados = jService.buscarNombre(empleado.getNombre());
+		listaEmpleados = jService.buscarEmpleado(empleado.getNombre());
 		
 		if(listaEmpleados.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");

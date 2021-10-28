@@ -12,7 +12,7 @@ import pe.edu.upc.spring.model.Empleado;
 @Repository
 public interface IEmpleadoRepository extends JpaRepository<Empleado, Integer>{
 
-	@Query("from Empleado j where j.nombre like %:nombre%")
-	List<Empleado> buscarNombre(@Param("nombre") String nombre);	
+	@Query("from Empleado j where j.empleado like %:empleado%")
+	List<Empleado> buscarEmpleado(@Param("empleado") String empleado);	
 
 }
