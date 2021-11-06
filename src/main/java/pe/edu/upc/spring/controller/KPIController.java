@@ -73,7 +73,7 @@ public class KPIController {
 			if(objKPI.isPresent())
 				objKPI.ifPresent(o -> model.addAttribute("kpi",o));
 			
-			return "kpi";
+			return "kpi2";
 		}
 	}
 	

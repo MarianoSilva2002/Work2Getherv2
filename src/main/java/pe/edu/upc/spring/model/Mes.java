@@ -50,33 +50,5 @@ public class Mes implements Serializable{
 		this.mes = mes;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + idMes;
-		result = prime * result + ((mes == null) ? 0 : mes.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Mes other = (Mes) obj;
-		if (idMes != other.idMes)
-			return false;
-		if (mes == null) {
-			if (other.mes != null)
-				return false;
-		} else if (!mes.equals(other.mes))
-			return false;
-		return true;
-	}
-	
 	
 }

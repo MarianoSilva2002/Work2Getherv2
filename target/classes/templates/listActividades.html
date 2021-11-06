@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"></meta>
-<title>Work2Gether</title>
+<title>Actividades</title>
 
 <script type="text/javascript"
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
@@ -64,8 +64,7 @@
 
 
 	<div class="container text-center">
-		<button type="button" class="btn btn-primary ">Actividades
-			Realizadas</button>
+		<button type="button" class="btn btn-primary">Actividades Realizadas</button>
 	</div>
 	<br>
 	<br>
@@ -137,11 +136,12 @@
 						<th>Nombre</th>
 						<th>Descripcion</th>
 						<th>Horas Estimadas</th>
-						<th>Horas Invertidas</th>
 						<th>Fecha Límite</th>
 						<th>Estado</th>
 						<th>Prioridad</th>
 						<th>Empleado</th>
+						<th>Operación</th>
+						<th>Operación</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -149,13 +149,12 @@
 						<td th:text="${a.Nombre}"></td>
 						<td th:text="${a.Descripcion}"></td>
 						<td th:text="${a.HorasEstimadas}"></td>	
-						<td th:text="${#dates.format(pet.HorasInvertidas,'dd/MM/yyyy')}"></td>					
-						<td th:text="${#dates.format(pet.FechaLimite,'dd/MM/yyyy')}"></td>
+						<td th:text="${#dates.format(a.FechaLimite,'dd/MM/yyyy')}"></td>
 						<td th:text="${a.Estado}"></td>
 						<td th:text="${a.Prioridad}"></td>
 						<td th:text="${a.empleado.Nombre}"></td>
-						<td><a th:href="@{/actividad/eliminar?id=}+${a.idActividad}">Eliminar</a></td>
-						<td><a th:href="@{'/actividad/modificar/'}+${a.idActividad}">Modificar</a></td>
+						<td><a th:href="@{'/actividad/modificar/'}+${a.idActividad}" class="btn btn-dark">Modificar</a></td>
+						<td><a th:href="@{/actividad/eliminar?id=}+${a.idActividad}" class="btn btn-danger">Eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>

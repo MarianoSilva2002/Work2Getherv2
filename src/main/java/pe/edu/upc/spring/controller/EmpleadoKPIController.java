@@ -1,6 +1,5 @@
 package pe.edu.upc.spring.controller;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,17 +15,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.edu.upc.spring.model.Empleado;
-import pe.edu.upc.spring.model.Mes;
 import pe.edu.upc.spring.model.Anio;
-import pe.edu.upc.spring.model.KPI;
+import pe.edu.upc.spring.model.Empleado;
 import pe.edu.upc.spring.model.Empleado_KPI;
-
-import pe.edu.upc.spring.service.IEmpleadoService;
-import pe.edu.upc.spring.service.IMesService;
+import pe.edu.upc.spring.model.KPI;
+import pe.edu.upc.spring.model.Mes;
 import pe.edu.upc.spring.service.IAnioService;
-import pe.edu.upc.spring.service.IKPIService;
 import pe.edu.upc.spring.service.IEmpleadoKPIService;
+import pe.edu.upc.spring.service.IEmpleadoService;
+import pe.edu.upc.spring.service.IKPIService;
+import pe.edu.upc.spring.service.IMesService;
 
 @Controller
 @RequestMapping("/empleado_KPI")
@@ -55,7 +53,13 @@ public class EmpleadoKPIController {
 	@RequestMapping("/")
 	public String irPaginaListadoEmpleado_KPI(Map<String, Object> model) {
 		model.put("listaEmpleado_KPI", vService.listar());
-		return "listEmpleados"; //"listEmpleados" es una pagina del frontend
+		return "productividad"; //"listEmpleados" es una pagina del frontend
+	}
+	
+	@RequestMapping("/empleado")
+	public String irPaginaProdxEmpleado(Map<String, Object> model) {
+		model.put("listaEmpleado_KPI", vService.listar());
+		return "productividadporempleado"; //"listEmpleados" es una pagina del frontend
 	}
 	
 	@RequestMapping("/irRegistrar")
