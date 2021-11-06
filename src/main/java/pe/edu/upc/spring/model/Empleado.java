@@ -70,7 +70,7 @@ public class Empleado implements Serializable{
 		return idEmpleado;
 	}
 
-	public void setIdJefe(int idEmpleado) {
+	public void setIdEmpleado(int idEmpleado) {
 		this.idEmpleado = idEmpleado;
 	}
 
@@ -126,7 +126,7 @@ public class Empleado implements Serializable{
 		return jefe;
 	}
 
-	public void setEmpresa(Jefe jefe) {
+	public void setJefe(Jefe jefe) {
 		this.jefe = jefe;
 	}
 
@@ -137,77 +137,6 @@ public class Empleado implements Serializable{
 	public void setRol(Roles rol) {
 		this.rol = rol;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((aMaterno == null) ? 0 : aMaterno.hashCode());
-		result = prime * result + ((aPaterno == null) ? 0 : aPaterno.hashCode());
-		result = prime * result + ((contrasena == null) ? 0 : contrasena.hashCode());
-		result = prime * result + ((correo == null) ? 0 : correo.hashCode());
-		result = prime * result + ((jefe == null) ? 0 : jefe.hashCode());
-		result = prime * result + ((genero == null) ? 0 : genero.hashCode());
-		result = prime * result + idEmpleado;
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + ((rol == null) ? 0 : rol.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Empleado other = (Empleado) obj;
-		if (aMaterno == null) {
-			if (other.aMaterno != null)
-				return false;
-		} else if (!aMaterno.equals(other.aMaterno))
-			return false;
-		if (aPaterno == null) {
-			if (other.aPaterno != null)
-				return false;
-		} else if (!aPaterno.equals(other.aPaterno))
-			return false;
-		if (contrasena == null) {
-			if (other.contrasena != null)
-				return false;
-		} else if (!contrasena.equals(other.contrasena))
-			return false;
-		if (correo == null) {
-			if (other.correo != null)
-				return false;
-		} else if (!correo.equals(other.correo))
-			return false;
-		if (jefe == null) {
-			if (other.jefe != null)
-				return false;
-		} else if (!jefe.equals(other.jefe))
-			return false;
-		if (genero == null) {
-			if (other.genero != null)
-				return false;
-		} else if (!genero.equals(other.genero))
-			return false;
-		if (idEmpleado != other.idEmpleado)
-			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		if (rol == null) {
-			if (other.rol != null)
-				return false;
-		} else if (!rol.equals(other.rol))
-			return false;
-		return true;
-	}
-
 	
 	
 }

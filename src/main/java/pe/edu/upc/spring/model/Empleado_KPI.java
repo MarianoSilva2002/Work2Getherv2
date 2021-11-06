@@ -1,7 +1,6 @@
 package pe.edu.upc.spring.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -103,24 +102,4 @@ public class Empleado_KPI implements Serializable{
 	public void setCantidad(int cantidad) {
 		Cantidad = cantidad;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(Cantidad, anio, empleado, idEmpleado_KPI, kpi, mes);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Empleado_KPI other = (Empleado_KPI) obj;
-		return Cantidad == other.Cantidad && Objects.equals(anio, other.anio)
-				&& Objects.equals(empleado, other.empleado) && idEmpleado_KPI == other.idEmpleado_KPI
-				&& Objects.equals(kpi, other.kpi) && Objects.equals(mes, other.mes);
-	}
-
 }

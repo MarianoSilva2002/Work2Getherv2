@@ -73,7 +73,7 @@ public class RolesController {
 			if(objRol.isPresent())
 				objRol.ifPresent(o -> model.addAttribute("rol",o));
 			
-			return "rol";
+			return "rol2";
 		}
 	}
 	

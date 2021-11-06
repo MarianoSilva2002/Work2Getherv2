@@ -91,10 +91,12 @@ public class ActividadController {
 			return "redirect:/actividad/listar";
 		}
 		else {
-			if(objActividad.isPresent())
+			model.addAttribute("listaEmpleados", eService.listar());
+			model.addAttribute("listaTiempoActividad", taService.listar());
+			if(objActividad.isPresent())				
 				objActividad.ifPresent(o -> model.addAttribute("actividad",o));
 			
-			return "actividad";
+			return "actividad2";
 		}
 	}
 	

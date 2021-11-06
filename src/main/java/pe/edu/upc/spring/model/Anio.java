@@ -50,29 +50,4 @@ public class Anio implements Serializable{
 		this.anio = anio;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + anio;
-		result = prime * result + idAnio;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Anio other = (Anio) obj;
-		if (anio != other.anio)
-			return false;
-		if (idAnio != other.idAnio)
-			return false;
-		return true;
-	}
-
 }
