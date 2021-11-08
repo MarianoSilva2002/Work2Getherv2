@@ -36,7 +36,7 @@ public class KPIController {
 	@RequestMapping("/")
 	public String irPaginaListadoRoles(Map<String, Object> model) {
 		model.put("listaKPIs", kService.listar());
-		return "listKPIs"; //"listKPIs" es una pagina del frontend
+		return "listKPIs"; //"listKPIs" es una pagina del frontend...
 	}
 	
 	@RequestMapping("/irRegistrar")
