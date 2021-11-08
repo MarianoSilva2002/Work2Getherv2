@@ -49,7 +49,14 @@ public class ActividadController {
 	public String NActicidad2() {
 		return "No_Actividades_2"; //"bienvenido" es una pagina del frontend
 	}
-	
+	@RequestMapping("/ARealizadas")
+	public String ARealizadas() {
+		return "Actividades_Realizadas"; //"bienvenido" es una pagina del frontend
+	}
+	@RequestMapping("/APendientes")
+	public String APendientes() {
+		return "Actividades_Pendientes"; //"bienvenido" es una pagina del frontend
+	}
 	@RequestMapping("/")
 	public String irPaginaListadoJefes(Map<String, Object> model) {
 		model.put("listaActividades", aService.listar());
