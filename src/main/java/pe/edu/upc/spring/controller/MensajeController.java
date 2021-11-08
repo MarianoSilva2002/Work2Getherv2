@@ -28,9 +28,14 @@ public class MensajeController {
 	@Autowired
 	private IMensajeService eService;
 	
-	@RequestMapping("/bienvenido")
+	@RequestMapping("/Jefe")
 	public String irPaginaBienvenida() {
-		return "bienvenido"; //"bienvenido" es una pagina del frontend.
+		return "Mensajeria_Jefe"; //"bienvenido" es una pagina del frontend.
+	}
+	
+	@RequestMapping("/Enviar")
+	public String irPaginaMensaje() {
+		return "Mensaje_Jefe"; //"bienvenido" es una pagina del frontend.
 	}
 	
 	@RequestMapping("/")
