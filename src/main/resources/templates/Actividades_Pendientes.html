@@ -61,7 +61,7 @@
           </div>
             <div class="container text-center">
               <a type="button" th:href="@{/actividad/ARealizadas}"class="align-content-end btn btn-primary">Actividades Realizadas</a>  
-              <a type="button" th:href="@{/actividad/APendientes}"class="align-content-end btn btn-primary">Actividades Penditentes</a>
+              <a type="button" th:href="@{/actividad/APendientes}"class="align-content-end btn btn-primary">Actividades Pendientes</a>
           </div>
           <br>
           <div class="row text-center">
@@ -77,15 +77,17 @@
                             <div class="col-2">
                               <p>Filtros: </p>
                             </div>
-                            <div class="col-9">
-                              <form>
-                                <select name="cars" class="custom-select col-6">
-                                  <option selected>Seleccionar</option>
-                                  <option value="Prioridad">Prioridad</option>
-                                  <option value="Fecha limite">Fecha limite</option>
+                              <form th:action="@{/actividad/filtro2}" method="post" th:object="${actividad}">
+                            <div class="col-6">
+                                <select th:field="*{Prioridad}"name="cars" class="custom-select " placeholder="Seleccionar">
+                                  <option th:value="Si">Prioridad</option>
+                                  <option th:value="No">Fecha limite</option>
                                 </select>
-                              </form>
                             </div>
+                            <div class="col-3">
+                            <button type="submit" class="btn btn-primary"> Filtrar</button>
+                            </div>
+                              </form>
                           </div>
                         </div> 
                       </div>                     

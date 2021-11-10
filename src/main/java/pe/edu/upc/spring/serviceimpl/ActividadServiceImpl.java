@@ -104,4 +104,9 @@ public class ActividadServiceImpl implements IActividadService{
 	public List<Actividad> actividadesRealizadasporJefe(int idJefe) {
 		return dActividad.actividadesRealizadasporJefe(idJefe);
 	}
+	@Override
+	 @Transactional(readOnly=true)
+	 public List<Actividad> actividadesOrderByFechaLimite() {
+	    return dActividad.actividadesOrderByFechaLimite();
+	}
 }
