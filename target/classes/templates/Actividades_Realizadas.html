@@ -65,54 +65,31 @@
           </div>
           <br>
           <div class="row text-center">
-            <div class="col-1"></div> 
+            <div class="col-1"></div>
               <div class="col-10 bg-warning py-3 rounded">
                     <div class="bg-white text-black font-weight-bold rounded">
                       <div class="row">
                         <div class="col-3">
-                          <p class="text-left">Actividades realizadas</p> 
+                          <p class="text-left">Actividades Realizadas</p> 
                         </div>
                       </div>                     
-                      <div class="row "> 
+                      <div class="row my-2 " th:each="a: ${listaActividades}"> 
                       <div class="col"></div>
-                      <div class="col-10"> 
-                        <div >
-                          <p class="text-left"> Documento Terminado 1</p>
-                          <p class="text-left"> Tiempo invertido en esta actividad:"Tiempo" </p>
-                        </div>
+                      <div class="col-10">       
+                          <div class="d-flex"> 
+                          <label th:text="${a.Nombre}"> </label>
+                          </div>
+                          <div class="d-flex">
+                          <p class="text-left mr-1"> Tiempo invertido en esta actividad:   </p><label th:text="${#dates.format(a.FechaLimite,'dd/MM/yyyy')}"></label>
+                          </div>
                         <div style="background-color:rgb(235, 113, 14);" >
                           <p>ㅤㅤ </p>
-                          <p>Descripcion de la actividad a realizar</p>
+                          <label th:text="${a.Descripcion}"></label>
                           <p>ㅤㅤ </p>
                         </div>
-                        <div class="container text-center">
-                          <button type="button" class="btn btn-primary ">Iniciar</button>
-                          <button type="button" class="btn btn-primary ">Pausar</button>
-                          <button type="button" class="btn btn-primary ">Finalizar</button>
-                      </div>
                       </div>
                       <div class="col"></div>
                       </div> 
-                      <div class="row "> 
-                        <div class="col"></div>
-                        <div class="col-10"> 
-                          <div >
-                            <p class="text-left"> Documento Terminado 2</p>
-                            <p class="text-left"> Tiempo invertido en esta actividad:"Tiempo" </p>
-                          </div>
-                          <div style="background-color:rgb(235, 113, 14);" >
-                            <p>ㅤㅤ </p>
-                            <p>Descripcion de la actividad a realizar</p>
-                            <p>ㅤㅤ </p>
-                          </div>
-                          <div class="container text-center">
-                            <button type="button" class="btn btn-primary ">Iniciar</button>
-                            <button type="button" class="btn btn-primary ">Pausar</button>
-                            <button type="button" class="btn btn-primary ">Finalizar</button>
-                        </div>
-                        </div>
-                        <div class="col"></div>
-                        </div> 
                   </div>
               </div>
             <div class="col-1"></div>

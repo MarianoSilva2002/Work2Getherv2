@@ -89,16 +89,18 @@
                           </div>
                         </div> 
                       </div>                     
-                      <div class="row "> 
+                      <div class="row my-2 " th:each="a: ${listaActividades}"> 
                       <div class="col"></div>
-                      <div class="col-10"> 
-                        <div >
-                          <p class="text-left"> Documento 1</p>
-                          <p class="text-left"> Fecha de entrega de documento"00/00/00" </p>
-                        </div>
+                      <div class="col-10">       
+                          <div class="d-flex"> 
+                          <label th:text="${a.Nombre}"> </label>
+                          </div>
+                          <div class="d-flex">
+                          <p class="text-left mr-1"> Fecha de entrega de documento:   </p><label th:text="${#dates.format(a.FechaLimite,'dd/MM/yyyy')}"></label>
+                          </div>
                         <div style="background-color:rgb(235, 113, 14);" >
                           <p>ㅤㅤ </p>
-                          <p>Descripcion de la actividad a realizar</p>
+                          <label th:text="${a.Descripcion}"></label>
                           <p>ㅤㅤ </p>
                         </div>
                         <div class="container text-center">
@@ -109,26 +111,6 @@
                       </div>
                       <div class="col"></div>
                       </div> 
-                      <div class="row "> 
-                        <div class="col"></div>
-                        <div class="col-10"> 
-                          <div >
-                            <p class="text-left"> Documento 2</p>
-                            <p class="text-left"> Fecha de entrega de documento"00/00/00" </p>
-                          </div>
-                          <div style="background-color:rgb(235, 113, 14);" >
-                            <p>ㅤㅤ </p>
-                            <p>Descripcion de la actividad a realizar</p>
-                            <p>ㅤㅤ </p>
-                          </div>
-                          <div class="container text-center">
-                            <button type="button" class="btn btn-primary ">Iniciar</button>
-                            <button type="button" class="btn btn-primary ">Pausar</button>
-                            <button type="button" class="btn btn-primary ">Finalizar</button>
-                        </div>
-                        </div>
-                        <div class="col"></div>
-                        </div> 
                   </div>
               </div>
             <div class="col-1"></div>
