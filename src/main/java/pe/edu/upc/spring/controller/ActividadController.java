@@ -51,12 +51,22 @@ public class ActividadController {
 	}
 	@RequestMapping("/ARealizadas")
 	public String ARealizadas(Map<String, Object> model) {
-		model.put("listaActividades", aService.listar());
-		return "Actividades_Realizadas"; //"bienvenido" es una pagina del frontend
+		List<Actividad> listaActividades;
+        listaActividades= aService.actividadesRealizadas();
+        if(listaActividades.isEmpty())
+        {
+            return "No_Actividades";
+        }
+        else
+        {
+            model.put("listaActividades", listaActividades);
+            return "Actividades_Realizadas"; 
+        }
 	}
 	@RequestMapping("/APendientes")
-	public String APendientes(Map<String, Object> model) {
+	public String APendientes(Map<String, Object> model, Model modelo) {
 		model.put("listaActividades", aService.listar());
+		modelo.addAttribute("actividad", new Actividad());
 		return "Actividades_Pendientes"; //"bienvenido" es una pagina del frontend
 	}
 	@RequestMapping("/")
@@ -195,6 +205,27 @@ public class ActividadController {
 		
 		model.put("listaActividades", listaActividades);
 		return "listActividades";
+	}
+	
+	@RequestMapping("/filtro2")
+	public String filtrar2(Map<String, Object> model, @ModelAttribute Actividad actividad) throws ParseException {
+		List<Actividad> listaActividades;
+		if(actividad.getPrioridad()=="Si") {
+			listaActividades=aService.buscarPrioritario(actividad.getPrioridad());
+			if(listaActividades.isEmpty()) {
+				model.put("mensaje", "No existen coincidencias");
+			}
+			model.put("listaActividades", listaActividades);
+			return "Actividades_Pendientes";
+		}
+		else {
+			listaActividades=aService.actividadesOrderByFechaLimite();
+			if(listaActividades.isEmpty()) {
+				model.put("mensaje", "No existen coincidencias");
+			}
+			model.put("listaActividades", listaActividades);
+			return "Actividades_Pendientes";
+		}
 	}
 
 }
