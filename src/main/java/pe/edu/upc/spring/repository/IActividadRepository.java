@@ -30,4 +30,7 @@ public interface IActividadRepository extends JpaRepository<Actividad, Integer>{
 	
 	@Query("from Actividad a where a.Estado = 'Realizado' and a.empleado.jefe.idJefe = :idJefe")
 	List<Actividad> actividadesRealizadasporJefe(@Param("idJefe") int idJefe);
+	
+	@Query("select count(a.idActividad) from Actividad a where a.idActividad =:idActividad")
+	public int existeActividad(@Param("idActividad") int idActividad);
 }

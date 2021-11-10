@@ -115,9 +115,28 @@
             <div class="col"></div>
           </div>
         </div>
-        </form>
         <br>
         <br>
+        <div class="row invisible">
+							<div class="col-5">
+								<div class="bg-warning pt-2 pb-1 px-3 ml-3 rounded">
+									<div class="bg-white text-black font-weight-bold rounded">
+										<h4 class="text-center">Id</h4>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 pt-1">
+								<div class="form-group">
+									<input type="text" class="form-control pr-3"
+										th:field="*{idKPI}" id="usr">
+										<div 	class="alert alert-danger" th:if="${#fields.hasErrors('idKPI')}" 
+												th:errors="*{idKPI}">
+										</div>
+								</div>
+							</div>
+						</div>
+						<br>
+	 	</form>	
         <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>
