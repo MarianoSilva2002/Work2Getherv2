@@ -49,6 +49,10 @@ public class EmpleadoKPIController {
 	public String irPaginaBienvenida() {
 		return "bienvenido"; //"bienvenido" es una pagina del frontend
 	}
+	@RequestMapping("/productividad")
+	public String productividad() {
+		return "Productividad2"; //"bienvenido" es una pagina del frontend
+	}
 	
 	@RequestMapping("/")
 	public String irPaginaListadoEmpleado_KPI(Map<String, Object> model) {
