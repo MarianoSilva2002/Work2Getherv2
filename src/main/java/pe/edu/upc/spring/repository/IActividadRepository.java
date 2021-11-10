@@ -34,4 +34,6 @@ public interface IActividadRepository extends JpaRepository<Actividad, Integer>{
 	@Query("from Actividad a ORDER BY a.FechaLimite ASC")
 	List<Actividad> actividadesOrderByFechaLimite();
 
+	@Query("select count(a.idActividad) from Actividad a where a.idActividad =:idActividad")
+	public int existeActividad(@Param("idActividad") int idActividad);
 }

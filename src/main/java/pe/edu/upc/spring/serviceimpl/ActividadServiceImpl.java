@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.spring.model.Actividad;
+import pe.edu.upc.spring.model.TiempoActividad;
 import pe.edu.upc.spring.repository.IActividadRepository;
 import pe.edu.upc.spring.service.IActividadService;
+import pe.edu.upc.spring.service.ITiempoActividadService;
 
 @Service
 public class ActividadServiceImpl implements IActividadService{
@@ -17,14 +19,33 @@ public class ActividadServiceImpl implements IActividadService{
 	@Autowired
 	private IActividadRepository dActividad;
 	
+	@Autowired
+	private ITiempoActividadService taService;
+	
 	@Override
 	@Transactional
 	public boolean grabar(Actividad Actividad) {
-		Actividad objActividad = dActividad.save(Actividad);
-		if(objActividad == null)
-			return false;
+		int ExisteActividad = dActividad.existeActividad(Actividad.getIdActividad());
+		if(ExisteActividad>0)
+		{
+			Actividad objActividad = dActividad.save(Actividad);
+			if(objActividad == null)
+				return false;
+			else
+				return true;
+		}
 		else
-			return true;
+		{
+			TiempoActividad ta = new TiempoActividad();
+			taService.grabar(ta);
+			Actividad.setTiempo(taService.listar().get(taService.listar().size()-1));
+			Actividad.setEstado("Pendiente");
+			Actividad objActividad = dActividad.save(Actividad);
+			if(objActividad == null)
+				return false;
+			else
+				return true;
+		}
 	}
 	
 
