@@ -13,5 +13,8 @@ public interface IActividadService {
 	public List<Actividad> listar();
 	public List<Actividad> buscarNombre(String nombre);
 	public List<Actividad> buscarEstado(String estado);
-	public List<Actividad> buscarPrioritario();
+	public List<Actividad> buscarPrioritario(String prioridad);
+	public List<Actividad> filtro(String estado, String prioridad);
+	public List<Actividad> actividadesRealizadas();
+	public List<Actividad> actividadesRealizadasporJefe(int idJefe);
 	}
