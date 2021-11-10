@@ -50,11 +50,13 @@ public class ActividadController {
 		return "No_Actividades_2"; //"bienvenido" es una pagina del frontend
 	}
 	@RequestMapping("/ARealizadas")
-	public String ARealizadas() {
+	public String ARealizadas(Map<String, Object> model) {
+		model.put("listaActividades", aService.listar());
 		return "Actividades_Realizadas"; //"bienvenido" es una pagina del frontend
 	}
 	@RequestMapping("/APendientes")
-	public String APendientes() {
+	public String APendientes(Map<String, Object> model) {
+		model.put("listaActividades", aService.listar());
 		return "Actividades_Pendientes"; //"bienvenido" es una pagina del frontend
 	}
 	@RequestMapping("/")
