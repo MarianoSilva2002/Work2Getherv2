@@ -19,6 +19,15 @@ public interface IActividadRepository extends JpaRepository<Actividad, Integer>{
 	@Query("from Actividad a where a.Estado like %:estado%")
 	List<Actividad> buscarEstado(@Param("estado") String estado);
 	
-	@Query("from Actividad a where a.Prioridad = 1")
-	List<Actividad> buscarPrioritario();
+	@Query("from Actividad a where a.Prioridad like %:prioridad%")
+	List<Actividad> buscarPrioritario(@Param("prioridad") String priodidad);
+	
+	@Query("from Actividad a where a.Estado like %:estado% and a.Prioridad like %:prioridad%")
+	List<Actividad> filtro(@Param("estado") String estado, @Param("prioridad") String priodidad);
+	
+	@Query("from Actividad a where a.Estado = 'Realizado'")
+	List<Actividad> actividadesRealizadas();
+	
+	@Query("from Actividad a where a.Estado = 'Realizado' and a.empleado.jefe.idJefe = :idJefe")
+	List<Actividad> actividadesRealizadasporJefe(@Param("idJefe") int idJefe);
 }

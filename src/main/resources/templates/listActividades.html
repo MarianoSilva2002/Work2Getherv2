@@ -64,17 +64,18 @@
 
 
 	<div class="container text-center">
-		<button type="button" class="btn btn-primary">Actividades Realizadas</button>
+		<a type="button" class="btn btn-primary" th:href="@{/actividad/Realizadas}">Actividades Realizadas</a>
 	</div>
 	<br>
 	<br>
 	<br>
 	<div class="container">
 		<div class="d-inline-flex flex-row">
-			<a type="button" class="btn btn-primary mr-3" th:href="@{/actividad/irRegistrar}">Agregar</a> <a
+			<a type="button" class="btn btn-primary mr-3" th:href="@{/actividad/irRegistrar}">Nuevo</a> <a
 				type="button" class="btn btn-primary" data-toggle="modal"
 				data-target="#myModal">Filtrar</a>
 		</div>
+		<form th:action="@{/actividad/filtro1}" method="post" th:object="${actividad}">
 		<div class="modal" id="myModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -88,16 +89,16 @@
 					<!-- Modal body -->
 					<div class="modal-body">
 						<div>
-							<p>Prioritario:</p>
-							<div class="form-check-inline">
-								<label class="form-check-label"> <input type="radio"
-									class="form-check-input" name="optradio">Si
-								</label>
-							</div>
-							<div class="form-check-inline">
-								<label class="form-check-label"> <input type="radio"
-									class="form-check-input" name="optradio">No
-								</label>
+							<div class="row">
+								<div class="col-2">
+									<p>Prioritario:</p>
+								</div>
+								<div class="col-9">
+									<select class="form-control" th:field="*{Prioridad}" id="sel1">
+										<option th:value="Yes">Si</option>
+										<option th:value="No">No</option>
+									</select>								
+								</div>
 							</div>
 							<br>
 							<div class="row">
@@ -105,14 +106,10 @@
 									<p>Estado:</p>
 								</div>
 								<div class="col-9">
-									<form>
-										<select name="cars" class="custom-select col-6">
-											<option selected>Seleccionar</option>
-											<option value="Pendiente">Pendiente</option>
-											<option value="En proceso">En proceso</option>
-											<option value="Realizado">Realizado</option>
-										</select>
-									</form>
+									<select class="form-control" th:field="*{Estado}" id="sel1">
+										<option th:value="Pendiente">Pendiente</option>
+										<option th:value="EnProceso">En Proceso</option>
+									</select>								
 								</div>
 							</div>
 						</div>
@@ -120,13 +117,14 @@
 
 					<!-- Modal footer -->
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">Aplicar</button>
+						<button type="submit" class="btn btn-primary">Aplicar</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
 					</div>
 
 				</div>
 			</div>
 		</div>
+		</form>
 		<br> <br>
 		<div class="table-responsive text-center">
 			<table id="example" style="width: 100%"

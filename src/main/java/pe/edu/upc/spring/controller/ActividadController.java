@@ -60,9 +60,17 @@ public class ActividadController {
 		return "Actividades_Pendientes"; //"bienvenido" es una pagina del frontend
 	}
 	@RequestMapping("/")
-	public String irPaginaListadoJefes(Map<String, Object> model) {
+	public String irPaginaListadoJefes(Map<String, Object> model, Model modelo) {
 		model.put("listaActividades", aService.listar());
+		modelo.addAttribute("actividad", new Actividad());
 		return "listActividades"; //"listActividades" es una pagina del frontend
+	}
+	
+	@RequestMapping("/Realizadas")
+	public String irPaginaListadoActRealizadas(Map<String, Object> model, Model modelo) {
+		model.put("listaActividades", aService.actividadesRealizadas());
+		modelo.addAttribute("actividad", new Actividad());
+		return "listActividadesRealizadasJefe"; //"listActividades" es una pagina del frontend
 	}
 	
 	@RequestMapping("/irRegistrar")
@@ -91,8 +99,10 @@ public class ActividadController {
 			objActividad.setEstado("Pendiente");
 			System.out.println(objActividad.getEmpleado().getNombre());
 			boolean flag = aService.grabar(objActividad);
-			if(flag)
+			if(flag) {
+				model.addAttribute("actividad", new Actividad());
 				return "redirect:/actividad/listar";
+			}
 			else {
 				model.addAttribute("mensaje", "Ocurrio un accidente, LUZ ROJA");
 				return "redirect:/actividad/irRegistrar";
@@ -134,8 +144,9 @@ public class ActividadController {
 	}
 	
 	@RequestMapping("/listar")
-	public String listar(Map<String, Object> model) {
+	public String listar(Map<String, Object> model, Model modelo) {
 		model.put("listaActividades", aService.listar());
+		modelo.addAttribute("actividad", new Actividad());
 		return "listActividades";
 	}
 	
@@ -167,4 +178,23 @@ public class ActividadController {
 		model.put("listaActividades", listaActividades);
 		return "buscar";
 	}
+	
+	@RequestMapping("/filtro1")
+	public String filtrar1(Map<String, Object> model, @ModelAttribute Actividad actividad) throws ParseException {
+		List<Actividad> listaActividades;
+		actividad.setEstado(actividad.getEstado());
+		actividad.setPrioridad(actividad.getPrioridad());
+		System.out.println(actividad.getEstado());
+		System.out.println(actividad.getPrioridad());
+
+		listaActividades = aService.filtro(actividad.getEstado(), actividad.getPrioridad());
+		
+		if(listaActividades.isEmpty()) {
+			model.put("mensaje", "No existen coincidencias");
+		}
+		
+		model.put("listaActividades", listaActividades);
+		return "listActividades";
+	}
+
 }
