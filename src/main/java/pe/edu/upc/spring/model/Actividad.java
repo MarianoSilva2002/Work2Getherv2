@@ -44,8 +44,8 @@ public class Actividad implements Serializable{
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date FechaLimite;
 	
-	@Column(name="Prioridad", nullable = false)
-	private Boolean Prioridad;
+	@Column(name="Prioridad", nullable = false, length = 3)
+	private String Prioridad;
 	
 	@Column(name="Estado", nullable = false, length = 50)
 	private String Estado;
@@ -65,7 +65,7 @@ public class Actividad implements Serializable{
 	}
 
 	public Actividad(int idActividad, String nombre, String descripcion, int horasEstimadas, Date horasInvertidas,
-			Date fechaLimite, Boolean prioridad, String estado, Empleado empleado, TiempoActividad tiempo) {
+			Date fechaLimite, String prioridad, String estado, Empleado empleado, TiempoActividad tiempo) {
 		super();
 		this.idActividad = idActividad;
 		Nombre = nombre;
@@ -127,11 +127,11 @@ public class Actividad implements Serializable{
 		FechaLimite = fechaLimite;
 	}
 
-	public Boolean getPrioridad() {
+	public String getPrioridad() {
 		return Prioridad;
 	}
 
-	public void setPrioridad(Boolean prioridad) {
+	public void setPrioridad(String prioridad) {
 		Prioridad = prioridad;
 	}
 

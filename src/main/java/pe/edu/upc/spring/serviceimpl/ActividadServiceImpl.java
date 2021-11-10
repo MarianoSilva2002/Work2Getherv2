@@ -60,7 +60,27 @@ public class ActividadServiceImpl implements IActividadService{
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Actividad> buscarPrioritario(){
-		return dActividad.buscarPrioritario();
+	public List<Actividad> buscarPrioritario(String prioridad){
+		return dActividad.buscarPrioritario(prioridad);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public List<Actividad> filtro(String estado, String prioridad){
+		return dActividad.filtro(estado, prioridad);
+	}
+
+
+	@Override	
+	@Transactional(readOnly=true)
+	public List<Actividad> actividadesRealizadas() {
+		return dActividad.actividadesRealizadas();
+	}
+
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Actividad> actividadesRealizadasporJefe(int idJefe) {
+		return dActividad.actividadesRealizadasporJefe(idJefe);
 	}
 }
