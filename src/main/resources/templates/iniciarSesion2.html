@@ -40,17 +40,7 @@
 
 <body>
   <br><br><br>
-<div th:replace="fragments/header4 :: header"></div>
-	<br>
-	<br>
-	<br>
-	<div class="row">
-          <div class="col"></div>
-          <div class="col">
-            <img class ="img-fluid" th:src="@{/img/Work2Gether.png}" alt="Logo de Work2gether">
-          </div>
-          <div class="col"></div>
-        </div>
+
   <form action="#" class="row justify-content-center border-0 shadow-none">
 
     <div class="col-md-2 bg-warning pt-4 rounded">
@@ -72,7 +62,7 @@
   
 
   
-<form th:action="@{/empleado/iniciarSesion}" th:object="${empleado}" class="row justify-content-center border-0 shadow-none">
+<form th:action="@{/jefe/iniciarSesion}" th:object="${jefe}" class="row justify-content-center border-0 shadow-none">
 
   <div class="col-md-2 bg-warning pt-4 rounded">
     
@@ -97,7 +87,7 @@
       </div>
 
     </div>
-     </form>
+    </form> 
 
         <br>
         <br>

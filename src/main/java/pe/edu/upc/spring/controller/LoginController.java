@@ -43,6 +43,12 @@ public class LoginController {
 		model.put("listaEmpleados", jService.listar());
 		return "login"; //"listEmpleados" es una pagina del frontend...
 	}
+	
+	@RequestMapping("/iniciarSesion")
+	public String irPaginaIniciarSesion(Map<String, Object> model) {
+		model.put("listaEmpleados", jService.listar());
+		return "login2"; //"listEmpleados" es una pagina del frontend...
+	}
 		
 	@RequestMapping("/irRegistrarEmpleado")
 	public String irPaginaRegistrarEmpleado(Model model) {
