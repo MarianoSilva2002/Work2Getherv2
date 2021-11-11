@@ -12,4 +12,5 @@ public interface IJefeService {
 	public Optional<Jefe> listarId(int idJefe);
 	public List<Jefe> listar();
 	public List<Jefe> buscarNombre(String nombre);
+	public List<Jefe> buscarContrasena(String correo, String contrasena);
 	}

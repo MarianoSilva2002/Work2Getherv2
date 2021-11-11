@@ -63,7 +63,20 @@ public class JefeController {
 	@RequestMapping("/irInicioSesion")
 	public String irPaginaInicioSesion(Model model) {
 		model.addAttribute("jefe", new Jefe());
-		return "iniciarSesion"; 
+		return "iniciarSesion2"; 
+	}
+	
+	@RequestMapping("/iniciarSesion")
+	public String iniciarSesion(@ModelAttribute Empleado objJefe, BindingResult binRes, Model model) throws ParseException{
+		List<Jefe> FiltroJefe = jService.buscarContrasena(objJefe.getCorreo(), objJefe.getContrasena());
+		if(FiltroJefe.isEmpty())
+		{
+			return "redirect:/jefe/irInicioSesion";
+		}
+		else {
+			return "listJefe";
+		}
+		
 	}
 	
 	@RequestMapping("/registrar")

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pe.edu.upc.spring.model.Empleado;
 import pe.edu.upc.spring.model.Jefe;
 import pe.edu.upc.spring.repository.IJefeRepository;
 import pe.edu.upc.spring.service.IJefeService;
@@ -50,6 +51,12 @@ public class JefeServiceImpl implements IJefeService{
 	@Transactional(readOnly = true)
 	public List<Jefe> buscarNombre(String nombre) {
 		return dJefe.buscarNombre(nombre);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Jefe> buscarContrasena(String correo, String contrasena) {
+		return dJefe.buscarContrasena(correo, contrasena);
 	}
 	
 }
