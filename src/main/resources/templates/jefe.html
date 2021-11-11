@@ -3,7 +3,7 @@
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
-   		<title>Registrar Empleado</title>
+   		<title>Registrar Jefe</title>
 		<script type="text/javascript"
 			src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
 			</script>
@@ -41,7 +41,8 @@
       <div th:replace="fragments/header4 :: header"></div>
       <br>
       <br>
-        <div class="row">
+      
+      <div class="row">
           <div class="col"></div>
           <div class="col">
             <img class ="img-fluid" th:src="@{/img/Work2Gether.png}" alt="Logo de Work2gether">
@@ -49,12 +50,11 @@
           <div class="col"></div>
         </div>
         <br>
-        <br>
-
+      <br>
 
 <body>
 
-<form th:action="@{/empleado/registrar}" th:object="${empleado}" class="justify-content-center border-0 shadow-none">
+  <form th:action="@{/jefe/registrar}" th:object="${jefe}" class="justify-content-center border-0 shadow-none">
 <div class="row">
  	<div class="col-3"></div>
     <div class="col-md-2 bg-warning pt-4 rounded">
@@ -172,22 +172,23 @@
   <div class="col-md-2 bg-warning pt-4 rounded">
     
     <div class="bg-white text-black font-weight-bold rounded pt-3 text-center">
-      <p class="pb-3">Jefe</p> 
+      <p class="pb-3">Nombre de Empresa</p> 
     </div>
   </div>
 <div class="col-md-1"></div>
   <div class="col-md-3 bg-warning pt-3 rounded">
     <div class="bg-white text-black font-weight-bold rounded pt-2 text-center">
-     <select class="form-control" th:field="*{jefe.idJefe}">
-                                        <option th:each="e: ${listaJefes}"
-                                            th:value="${e.idJefe}"
+     <select class="form-control" th:field="*{empresa.idEmpresa}">
+                                        <option th:each="e: ${listaEmpresas}"
+                                            th:value="${e.idEmpresa}"
                                             th:text="${e.Nombre}"
-                                            th:selected="(${e.idJefe}==*{jefe.idJefe})"> 
+                                            th:selected="(${e.idEmpresa}==*{empresa.idEmpresa})"> 
                                         </option>
                                     </select>
     </div>
   </div>
 </div>
+
 <br>
 
     <div class="col-md-12 p-4">
@@ -200,7 +201,6 @@
     </form>
         <br>
         <br>
-        
         <div th:replace="fragments/footer :: footer"></div>
     </body>
 </html>
