@@ -39,7 +39,7 @@ public class JefeController {
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
-		return "bienvenido"; //"bienvenido" es una pagina del frontend.
+		return "listJefe"; //"bienvenido" es una pagina del frontend.
 	}
 	
 	@RequestMapping("/")
@@ -68,9 +68,10 @@ public class JefeController {
 			return "jefe";
 		}
 		else {
+			objJefe.setRol(rService.listarId(1).get());
 			boolean flag = jService.grabar(objJefe);
 			if(flag)
-				return "redirect:/jefe/listar";
+				return "redirect:/login/";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un accidente, LUZ ROJA");
 				return "redirect:/jefe/irRegistrar";
