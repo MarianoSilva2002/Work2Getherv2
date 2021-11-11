@@ -205,7 +205,8 @@ public class ActividadController {
 	@RequestMapping("/filtro2")
 	public String filtrar2(Map<String, Object> model, @ModelAttribute Actividad actividad) throws ParseException {
 		List<Actividad> listaActividades;
-		if(actividad.getPrioridad()=="Si") {
+		if(actividad.getPrioridad().equals("Si"))
+		{
 			listaActividades=aService.buscarPrioritario(actividad.getPrioridad());
 			if(listaActividades.isEmpty()) {
 				model.put("mensaje", "No existen coincidencias");
@@ -213,7 +214,8 @@ public class ActividadController {
 			model.put("listaActividades", listaActividades);
 			return "Actividades_Pendientes";
 		}
-		else {
+		else
+		{
 			listaActividades=aService.actividadesOrderByFechaLimite();
 			if(listaActividades.isEmpty()) {
 				model.put("mensaje", "No existen coincidencias");

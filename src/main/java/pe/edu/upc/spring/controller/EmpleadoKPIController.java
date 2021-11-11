@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -54,10 +55,23 @@ public class EmpleadoKPIController {
 		return "Productividad2"; //"bienvenido" es una pagina del frontend
 	}
 	
+	@RequestMapping("/productividadnokpi")
+	public String productividadnokpi() {
+		return "productividadnokpi"; //"bienvenido" es una pagina del frontend
+	}
+	
 	@RequestMapping("/")
 	public String irPaginaListadoEmpleado_KPI(Map<String, Object> model) {
-		model.put("listaEmpleado_KPI", vService.listar());
-		return "productividad"; //"listEmpleados" es una pagina del frontend
+		List<KPI> listaKPIs = kService.listar();
+		if(listaKPIs.isEmpty())
+		{
+			return "productividadnokpi";
+		}
+		else
+		{
+			model.put("listaEmpleado_KPI", vService.listar());
+			return "productividad"; //"listEmpleados" es una pagina del frontend
+		}
 	}
 	
 	@RequestMapping("/empleado")
