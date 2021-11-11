@@ -77,17 +77,21 @@
                             <div class="col-2">
                               <p>Filtros: </p>
                             </div>
-                              <form th:action="@{/actividad/filtro2}" method="post" th:object="${actividad}">
-                            <div class="col-6">
-                                <select th:field="*{Prioridad}"name="cars" class="custom-select " placeholder="Seleccionar">
-                                  <option th:value="Si">Prioridad</option>
-                                  <option th:value="No">Fecha limite</option>
-                                </select>
-                            </div>
-                            <div class="col-3">
-                            <button type="submit" class="btn btn-primary"> Filtrar</button>
-                            </div>
-                              </form>
+                            <div class="col-10">
+                              <form th:action="@{/actividad/filtro2}" method="post" th:object="${actividad}" class="d-flex">
+                           		 <div class="row">
+                           		 	<div class="col-8">
+                                		<select th:field="*{Prioridad}" name="cars" class="custom-select " placeholder="Seleccionar">
+                                  			<option th:value="Si">Prioridad</option>
+                                  			<option th:value="No">Fecha limite</option>
+                               			 </select>
+                            		</div>
+                           			 <div class="col-2">
+                            			<button type="submit" class="btn btn-primary"> Filtrar</button>
+                           		 	</div>
+                           		 </div>
+                             </form>
+            		       </div>
                           </div>
                         </div> 
                       </div>                     
@@ -118,17 +122,9 @@
             <div class="col-1"></div>
             </div>
           </div>
-        </div>
         <br>
-        <br>
-        <br>
-        <br>
-        </div>
-        <br>
-        </div>
         <br>
         <br>
         <div th:replace="fragments/footer :: footer"></div>
-  </div>
     </body>
 </html>
