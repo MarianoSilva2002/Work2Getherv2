@@ -128,32 +128,36 @@
             </div>
             <br>
           <br>
-            <div class="row">
-              <div class="col"></div>
-              <div class="col-12 bg-warning pt-3 pb-3 rounded">
-                <div class="bg-white text-black font-weight-bold rounded">
+          
           <div class="table-responsive text-center">
-            <table id="example" style="width:100%" class="table table-hover table-bordered">
-              <thead style="background-color:rgb(255, 193, 7);">
+			<table id="example" style="width: 100%"
+				class="table table-hover table-bordered">
+				<thead style="background-color: rgb(255, 193, 7);">
                 <tr>
-                  <div class="col"></div>
-                  <th>Empleado</th>
-                  <th>Documento</th>
-                  
-                  <th>Fecha Limite</th> 
-                  <div class="col"></div>
+                  <th>Nombre del documento</th>
+                  <th>Descripcion</th>
+                  <th>Fecha Limite</th>
+                  <th>Prioridad</th>  
                 </tr>
               </thead>
               <tbody> 
+              <tr th:each="a: ${listaActividades}">
+						<td th:text="${a.Nombre}"></td>
+						<td th:text="${a.Descripcion}"></td>
+						<td th:text="${#dates.format(a.FechaLimite,'dd/MM/yyyy')}"></td>
+						<td th:text="${a.Prioridad}"></td>
+					</tr>
               </tbody>
             </table>
            </div>
                </div>
             </div>
           </div>
+          
     <br>
     <br>
     <br>
+    
     <div class="container">
       <div class="col text-center">
         <div class="container">
@@ -166,31 +170,28 @@
       </div>
       <br>
     <br>
-      <div class="row">
-        <div class="col"></div>
-        <div class="col-12 bg-warning pt-3 pb-3 rounded">
-          <div class="bg-white text-black font-weight-bold rounded">
-    <div class="table-responsive text-center">
-      <table id="example" style="width:100%" class="table table-hover table-bordered">
-        <thead style="background-color:rgb(255, 193, 7);">
+      <div class="table-responsive text-center">
+			<table id="example" style="width: 100%"
+				class="table table-hover table-bordered">
+				<thead style="background-color: rgb(255, 193, 7);">
           <tr>
-            <div class="col"></div>
             <th>Empleado</th>
-            <th>Documento Entregado</th>
-            <th>Fecha de entrega</th> 
-            <div class="col"></div>
+            <th>Documento</th>
+            <th>Estado</th> 
+            <th>Prioridad</th> 
           </tr>
         </thead>
         <tbody>
+        <tr th:each="a: ${listaActividades}">
+        				<td th:text="${a.empleado.Nombre}"></td>
+						<td th:text="${a.Nombre}"></td>
+						<td th:text="${a.Estado}"></td>
+						<td th:text="${a.Prioridad}"></td>
+					</tr>
         </tbody>
       </table>
     </div>
   </div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
     <br>
     <br>    

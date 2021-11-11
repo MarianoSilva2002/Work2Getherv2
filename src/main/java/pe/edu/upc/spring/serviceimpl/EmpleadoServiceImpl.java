@@ -52,4 +52,10 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
 		return dEmpleado.buscarEmpleado(empleado);
 	}
 	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Empleado> buscarContrasena(String correo, String contrasena) {
+		return dEmpleado.buscarContrasena(correo, contrasena);
+	}
+	
 }

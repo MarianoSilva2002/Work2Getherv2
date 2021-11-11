@@ -3,7 +3,7 @@
 <head>
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
-   		<title>Iniciar Sesion</title>
+   		<title>Iniciar Sesion como</title>
 		<script type="text/javascript"
 			src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
 			</script>
@@ -37,10 +37,8 @@
 			crossorigin="anonymous"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
-
 <body>
-  <br><br><br>
-<div th:replace="fragments/header4 :: header"></div>
+	<div th:replace="fragments/header4 :: header"></div>
 	<br>
 	<br>
 	<br>
@@ -51,56 +49,54 @@
           </div>
           <div class="col"></div>
         </div>
-  <form action="#" class="row justify-content-center border-0 shadow-none">
-
+<div class="container">
+   <div class="row">
     <div class="col-md-2 bg-warning pt-4 rounded">
-      
-      <div class="bg-white text-black font-weight-bold rounded pt-3 text-center">
-        <p class="pb-3">Correo del usuario</p> 
+      <div class="bg-white text-black font-weight-bold rounded">
+        <p>Iniciar Sesion como:</p> 
       </div>
     </div>
-<div class="col-md-1"></div>
-    <div class="col-md-3 bg-warning pt-3 rounded">
-      <div class="bg-white text-black font-weight-bold rounded pt-2 text-center">
-        <input type="text" placeholder="Correo del usuario..." class="form-control" name="uname" required> 
-      </div>
-    </div>
-
-   </form>
-  
-<br>
-  
-
-  
-<form th:action="@{/empleado/iniciarSesion}" th:object="${empleado}" class="row justify-content-center border-0 shadow-none">
-
-  <div class="col-md-2 bg-warning pt-4 rounded">
-    
-    <div class="bg-white text-black font-weight-bold rounded pt-3 text-center">
-      <p class="pb-3">Inserte Contraseña</p> 
-    </div>
+    <br>
+    <br>
   </div>
-<div class="col-md-1"></div>
-  <div class="col-md-3 bg-warning pt-3 rounded">
-    <div class="bg-white text-black font-weight-bold rounded pt-2 text-center">
-    <input type="password" id="confirm_password" placeholder="Inserte Contraseña..." class="form-control" required>  
-    </div>
+  <br>
+    <br>
+
+   <form action="#" class="row justify-content-center border-0 shadow-none">
+
+  <div class="col-md-5">
+    <div class="col-md-6 bg-primary pt-4 rounded-circle float-left">
+    <img th:src="@{/img/Empleado.png}" class="rounded-circle bg-white" alt="Imagen de Empleado"width="200" height="200">
   </div>
-
-
+  </div>
+  <div class="col-md-5">
+    <div class="col-md-6 bg-primary pt-4 rounded-circle float-right">
+    <img th:src="@{/img/Jefe.png}" class="rounded-circle bg-white" alt="Imagen de Jefe"width="200" height="200">
+  </div>
+  
+  </div>
+</form>
 
 <br>
-    <div class="col-md-12 p-4">
-      <div class="row justify-content-center">
-        <button type="submit" class="bnt btn-primary col-md-2 rounded">Iniciar Sesión</button>
-
-      </div>
-
+<br>
+<form th:action="@{/empleado/irInicioSesion}" class="row justify-content-center border-0 shadow-none">
+  <div class="col-md-5">
+    <div class="col-md-5 justify-content-center float-left">
+      <button class="btn btn-primary col-md-12 rounded">Empleado</button>
     </div>
-     </form>
+  </div>
+  </form>
+  <form th:action="@{/jefe/irInicioSesion}" class="row justify-content-center border-0 shadow-none">
+  <div class="col-md-5">
+    <div class="col-md-5 justify-content-center float-right">
+      <button class="btn btn-primary col-md-12 rounded">Jefe</button>
+    </div>
+  </div>
+</form>
 
+  </div>
         <br>
         <br>
 	<div th:replace="fragments/footer :: footer"></div>
-    </body>
+</body>
 </html>

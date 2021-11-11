@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.Roles;
+import pe.edu.upc.spring.model.Empleado;
 import pe.edu.upc.spring.model.Empresa;
 import pe.edu.upc.spring.model.Jefe;
 
@@ -57,6 +58,12 @@ public class JefeController {
 		model.addAttribute("rol", new Roles());
 		model.addAttribute("jefe", new Jefe());
 		return "jefe"; //"jefe" es una pagina del frontend para insertar y/o modificar.
+	}
+	
+	@RequestMapping("/irInicioSesion")
+	public String irPaginaInicioSesion(Model model) {
+		model.addAttribute("jefe", new Jefe());
+		return "iniciarSesion"; 
 	}
 	
 	@RequestMapping("/registrar")
