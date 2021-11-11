@@ -78,6 +78,7 @@ public class EmpleadoController {
 		
 	}
 	
+	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Empleado objEmpleado, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
