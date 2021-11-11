@@ -39,7 +39,7 @@ public class EmpleadoController {
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
-		return "bienvenido"; //"bienvenido" es una pagina del frontend...
+		return "listEmpleado"; //"bienvenido" es una pagina del frontend...
 	}
 	
 	@RequestMapping("/")
@@ -68,9 +68,10 @@ public class EmpleadoController {
 			return "empleado";
 		}
 		else {
+			objEmpleado.setRol(rService.listarId(2).get());
 			boolean flag = jService.grabar(objEmpleado);
 			if(flag)
-				return "redirect:/empleado/listar";
+				return "redirect:/login/";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un accidente, LUZ ROJA");
 				return "redirect:/empleado/irRegistrar";

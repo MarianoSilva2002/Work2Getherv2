@@ -133,17 +133,19 @@ public class ActividadController {
 	}
 	
 	@RequestMapping("/eliminar")
-	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id, Model modelo) {
 		try {
 			if(id!=null && id>0) {
 				aService.eliminar(id);
 				model.put("listaActividades", aService.listar());
+				modelo.addAttribute("actividad", new Actividad());
 			}
 		}
 		catch(Exception ex){
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
 			model.put("listaActividades", aService.listar());
+			modelo.addAttribute("actividad", new Actividad());
 		}
 		return "listActividades";
 	}
