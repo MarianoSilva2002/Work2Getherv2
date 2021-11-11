@@ -59,6 +59,25 @@ public class EmpleadoController {
 		return "Empleado"; //"Empleado" es una pagina del frontend para insertar y/o modificar
 	}
 	
+	@RequestMapping("/irInicioSesion")
+	public String irPaginaInicioSesion(Model model) {
+		model.addAttribute("empleado", new Empleado());
+		return "iniciarSesion"; 
+	}
+	
+	@RequestMapping("/iniciarSesion")
+	public String iniciarSesion(@ModelAttribute Empleado objEmpleado, BindingResult binRes, Model model) throws ParseException{
+		List<Empleado> FiltroEmpleado = jService.buscarContrasena(objEmpleado.getCorreo(), objEmpleado.getContrasena());
+		if(FiltroEmpleado.isEmpty())
+		{
+			return "redirect:/empleado/irInicioSesion";
+		}
+		else {
+			return "listEmpleado";
+		}
+		
+	}
+	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Empleado objEmpleado, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
