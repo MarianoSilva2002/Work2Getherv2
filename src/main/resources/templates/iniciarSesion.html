@@ -39,7 +39,6 @@
 </head>
 
 <body>
-  <br><br><br>
 <div th:replace="fragments/header4 :: header"></div>
 	<br>
 	<br>
@@ -51,8 +50,9 @@
           </div>
           <div class="col"></div>
         </div>
-  <form action="#" class="row justify-content-center border-0 shadow-none">
-
+  <form th:action="@{/empleado/iniciarSesion}" th:object="${empleado}" class=" justify-content-center border-0 shadow-none">
+<div class= "row">
+<div class="col-3"></div>
     <div class="col-md-2 bg-warning pt-4 rounded">
       
       <div class="bg-white text-black font-weight-bold rounded pt-3 text-center">
@@ -62,18 +62,13 @@
 <div class="col-md-1"></div>
     <div class="col-md-3 bg-warning pt-3 rounded">
       <div class="bg-white text-black font-weight-bold rounded pt-2 text-center">
-        <input type="text" placeholder="Correo del usuario..." class="form-control" name="uname" required> 
+        <input th:field="*{correo}" type="text" placeholder="Correo del usuario..." class="form-control" name="uname" required> 
       </div>
     </div>
-
-   </form>
-  
+  </div>
 <br>
-  
-
-  
-<form th:action="@{/empleado/iniciarSesion}" th:object="${empleado}" class="row justify-content-center border-0 shadow-none">
-
+  <div class="row">
+  <div class="col-3"></div>
   <div class="col-md-2 bg-warning pt-4 rounded">
     
     <div class="bg-white text-black font-weight-bold rounded pt-3 text-center">
@@ -83,13 +78,12 @@
 <div class="col-md-1"></div>
   <div class="col-md-3 bg-warning pt-3 rounded">
     <div class="bg-white text-black font-weight-bold rounded pt-2 text-center">
-    <input type="password" id="confirm_password" placeholder="Inserte Contraseña..." class="form-control" required>  
+    <input th:field="*{contrasena}"  type="password" id="confirm_password" placeholder="Inserte Contraseña..." class="form-control" required>  
     </div>
   </div>
-
-
-
+</div>
 <br>
+
     <div class="col-md-12 p-4">
       <div class="row justify-content-center">
         <button type="submit" class="bnt btn-primary col-md-2 rounded">Iniciar Sesión</button>
