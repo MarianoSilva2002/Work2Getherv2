@@ -64,67 +64,15 @@
 
 
 	<div class="container text-center">
-		<button type="button" class="btn btn-primary">Actividades Realizadas</button>
+		<a type="button" class="btn btn-primary" th:href="@{/actividad/}">Actividades Pendientes</a>
+		<a type="button" class="btn btn-primary" th:href="@{/actividad/Realizadas}">Actividades Realizadas</a>
 	</div>
 	<br>
 	<br>
 	<br>
 	<div class="container">
-		<div class="d-inline-flex flex-row">
-			<a type="button" class="btn btn-primary mr-3" th:href="@{/actividad/irRegistrar}">Agregar</a> <a
-				type="button" class="btn btn-primary" data-toggle="modal"
-				data-target="#myModal">Filtrar</a>
-		</div>
-		<form th:action="@{/actividad/filtro1}" method="post" th:object="${actividad}">
-		<div class="modal" id="myModal">
-			<div class="modal-dialog">
-				<div class="modal-content">
 
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">Modal Heading</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<div>
-							<div class="row">
-								<div class="col-2">
-									<p>Prioritario:</p>
-								</div>
-								<div class="col-9">
-									<select class="form-control" th:field="*{Prioridad}" id="sel1">
-										<option th:value="Yes">Si</option>
-										<option th:value="No">No</option>
-									</select>								
-								</div>
-							</div>
-							<br>
-							<div class="row">
-								<div class="col-2">
-									<p>Estado:</p>
-								</div>
-								<div class="col-9">
-									<select class="form-control" th:field="*{Estado}" id="sel1">
-										<option th:value="Pendiente">Pendiente</option>
-										<option th:value="EnProceso">En Proceso</option>
-									</select>								
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary">Aplicar</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-		</form>
+		
 		<br> <br>
 		
 		<div class="table-responsive text-center">
@@ -139,8 +87,6 @@
 						<th>Estado</th>
 						<th>Prioridad</th>
 						<th>Empleado</th>
-						<th>Operación</th>
-						<th>Operación</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -152,8 +98,6 @@
 						<td th:text="${a.Estado}"></td>
 						<td th:text="${a.Prioridad}"></td>
 						<td th:text="${a.empleado.Nombre}"></td>
-						<td><a th:href="@{'/actividad/modificar/'}+${a.idActividad}" class="btn btn-dark">Modificar</a></td>
-						<td><a th:href="@{/actividad/eliminar?id=}+${a.idActividad}" class="btn btn-danger">Eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>

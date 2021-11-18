@@ -101,8 +101,13 @@ public class ActividadServiceImpl implements IActividadService{
 
 	@Override
 	@Transactional(readOnly=true)
-	public List<Actividad> actividadesRealizadasporJefe(int idJefe) {
-		return dActividad.actividadesRealizadasporJefe(idJefe);
+	public List<Actividad> actividadesRealizadasCreadasporJefe(int idJefe) {
+		return dActividad.actividadesRealizadasCreadasporJefe(idJefe);
+	}
+	@Override
+	@Transactional(readOnly=true)
+	public List<Actividad> actividadesCreadasporJefe(int idJefe) {
+		return dActividad.actividadesCreadasporJefe(idJefe);
 	}
 	@Override
 	 @Transactional(readOnly=true)

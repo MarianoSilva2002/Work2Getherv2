@@ -18,6 +18,7 @@ import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.Actividad;
 import pe.edu.upc.spring.model.Empleado;
+import pe.edu.upc.spring.model.Jefe;
 import pe.edu.upc.spring.model.TiempoActividad;
 
 import pe.edu.upc.spring.service.IActividadService;
@@ -37,10 +38,10 @@ public class ActividadController {
 	@Autowired
 	private IActividadService aService;
 	
-	@RequestMapping("/bienvenido")
-	public String irPaginaBienvenida() {
-		return "bienvenido"; //"bienvenido" es una pagina del frontend
-	}
+	public static Empleado EmpleadoCActiva;
+	
+	public static Jefe JefeCActiva;
+	
 	@RequestMapping("/NActividad")
 	public String NActicidad() {
 		return "No_Actividades"; //"bienvenido" es una pagina del frontend
@@ -71,15 +72,14 @@ public class ActividadController {
 	}
 	@RequestMapping("/")
 	public String irPaginaListadoJefes(Map<String, Object> model, Model modelo) {
-		model.put("listaActividades", aService.listar());
+		model.put("listaActividades", aService.actividadesCreadasporJefe(JefeCActiva.getIdJefe()));
 		modelo.addAttribute("actividad", new Actividad());
 		return "listActividades"; //"listActividades" es una pagina del frontend
 	}
 	
 	@RequestMapping("/Realizadas")
 	public String irPaginaListadoActRealizadas(Map<String, Object> model, Model modelo) {
-		model.put("listaActividades", aService.actividadesRealizadas());
-		modelo.addAttribute("actividad", new Actividad());
+		model.put("listaActividades", aService.actividadesRealizadasCreadasporJefe(JefeCActiva.getIdJefe()));
 		return "listActividadesRealizadasJefe"; //"listActividades" es una pagina del frontend
 	}
 	
