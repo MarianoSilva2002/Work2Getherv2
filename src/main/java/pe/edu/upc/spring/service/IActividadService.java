@@ -16,6 +16,7 @@ public interface IActividadService {
 	public List<Actividad> buscarPrioritario(String prioridad);
 	public List<Actividad> filtro(String estado, String prioridad);
 	public List<Actividad> actividadesRealizadas();
-	public List<Actividad> actividadesRealizadasporJefe(int idJefe);
+	public List<Actividad> actividadesRealizadasCreadasporJefe(int idJefe);
+	public List<Actividad> actividadesCreadasporJefe(int idJefe);
 	public List<Actividad> actividadesOrderByFechaLimite();
 	}

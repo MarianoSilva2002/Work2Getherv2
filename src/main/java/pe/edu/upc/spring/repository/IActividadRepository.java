@@ -29,7 +29,10 @@ public interface IActividadRepository extends JpaRepository<Actividad, Integer>{
 	List<Actividad> actividadesRealizadas();
 	
 	@Query("from Actividad a where a.Estado = 'Realizado' and a.empleado.jefe.idJefe = :idJefe")
-	List<Actividad> actividadesRealizadasporJefe(@Param("idJefe") int idJefe);
+	List<Actividad> actividadesRealizadasCreadasporJefe(@Param("idJefe") int idJefe);
+	
+	@Query("from Actividad a where a.Estado != 'Realizado' and a.empleado.jefe.idJefe = :idJefe")
+	List<Actividad> actividadesCreadasporJefe(@Param("idJefe") int idJefe);
 	
 	@Query("from Actividad a ORDER BY a.FechaLimite ASC")
 	List<Actividad> actividadesOrderByFechaLimite();
