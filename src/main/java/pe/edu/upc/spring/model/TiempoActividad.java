@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="TiempoActividad")
@@ -20,15 +22,19 @@ private static final long serialVersionUID = 11;
 	private int idTiempoActividad;
 	
 	@Column(name="HoraInicio", nullable = true)
+	@Temporal(TemporalType.TIME)
 	private Date HoraInicio;
 	
 	@Column(name="HoraFin", nullable = true)
+	@Temporal(TemporalType.TIME)
 	private Date HoraFin;
 	
 	@Column(name="DiaInicio", nullable = true)
+	@Temporal(TemporalType.DATE)
 	private Date DiaInicio;
 	
 	@Column(name="DiaFinal", nullable = true)
+	@Temporal(TemporalType.DATE)
 	private Date DiaFinal;
 	
 	@Column(name="TiempoInvertido", nullable = true)

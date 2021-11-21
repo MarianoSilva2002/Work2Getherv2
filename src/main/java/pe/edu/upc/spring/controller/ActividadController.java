@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -41,6 +42,10 @@ public class ActividadController {
 	public static Empleado EmpleadoCActiva;
 	
 	public static Jefe JefeCActiva;
+	
+	public static boolean ActividadEnProceso;
+	
+	public static int idActividad;
 	
 	@RequestMapping("/NActividad")
 	public String NActicidad() {
@@ -152,7 +157,7 @@ public class ActividadController {
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model, Model modelo) {
-		model.put("listaActividades", aService.listar());
+		model.put("listaActividades", aService.actividadesCreadasporJefe(JefeCActiva.getIdJefe()));
 		modelo.addAttribute("actividad", new Actividad());
 		return "listActividades";
 	}
@@ -227,4 +232,65 @@ public class ActividadController {
 		}
 	}
 
+	@RequestMapping("/iniciar/{id}")
+	public String inicioActividad(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException{
+		Optional<Actividad> objActividad = aService.listarId(id);
+		if(objActividad == null) {
+			objRedir.addFlashAttribute("mensaje","Ocurrio un roche, LUZ ROJA");
+			return "redirect:/actividad/APendientes";
+		}
+		else {
+			if(ActividadEnProceso )
+			{
+				objRedir.addFlashAttribute("mensaje","Ya hay una actividad en proceso");
+				return "redirect:/actividad/APendientes";
+			}
+			else
+			{
+				Date fechaactual = new Date();
+				Actividad actividad = objActividad.get();
+				TiempoActividad objTA = actividad.getTiempo();
+				idActividad = actividad.getIdActividad();
+				objTA.setDiaInicio(fechaactual);
+				objTA.setHoraInicio(fechaactual);
+				taService.grabar(objTA);
+				ActividadEnProceso=true;
+				return "redirect:/actividad/APendientes";
+			}		
+		}
+	}
+	
+	@RequestMapping("/pausar/{id}")
+	public String pausarActividad(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException{
+		Optional<Actividad> objActividad = aService.listarId(id);
+		if(objActividad == null) {
+			objRedir.addFlashAttribute("mensaje","Ocurrio un roche, LUZ ROJA");
+			return "redirect:/actividad/APendientes";
+		}
+		else {
+			if(!ActividadEnProceso || idActividad != id)
+			{
+				objRedir.addFlashAttribute("mensaje","No se está realizando esa actividad");
+				return "redirect:/actividad/APendientes";
+			}
+			else
+			{
+				Date fechaactual = new Date();
+				Date HoraFinal = fechaactual;
+				Date DiaFinal = fechaactual;
+				
+				Actividad actividad = objActividad.get();
+				TiempoActividad objTA = actividad.getTiempo();
+				
+				Date fechainicio = objTA.getDiaInicio();
+				fechainicio = objTA.getHoraInicio();
+				
+				//objTA.setTiempoInvertido((Date)(fechaactual.getTime() - fechainicio.getTime()));
+				
+				taService.grabar(objTA);
+				ActividadEnProceso=false;
+				return "redirect:/actividad/APendientes";
+			}		
+		}
+	}
 }
