@@ -63,6 +63,7 @@ public class ActividadController {
 	public String NActicidad2() {
 		return "No_Actividades_2"; //"bienvenido" es una pagina del frontend
 	}
+	
 	@RequestMapping("/ARealizadas")
 	public String ARealizadas(Map<String, Object> model) {
 		List<Actividad> listaActividades;

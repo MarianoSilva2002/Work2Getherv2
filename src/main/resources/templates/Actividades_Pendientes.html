@@ -78,7 +78,7 @@
                               <p>Filtros: </p>
                             </div>
                             <div class="col-10">
-                              <form th:action="@{/actividad/filtro2}" method="post" th:object="${actividad}" class="d-flex">
+                              <form th:action="@{/jefe/buscar}" method="post" th:object="${actividad}" class="d-flex">
                            		 <div class="row">
                            		 	<div class="col-8">
                                 		<select th:field="*{Prioridad}" name="cars" class="custom-select " placeholder="Seleccionar">
