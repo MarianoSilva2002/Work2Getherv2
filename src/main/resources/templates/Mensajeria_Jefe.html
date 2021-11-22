@@ -58,20 +58,26 @@
             <div class="col-2"></div>
               <div class="col-8 bg-warning py-3 rounded">
                     <div class="bg-white text-black font-weight-bold rounded">
-                      <p class="text-left">Mensajeria con el jefe</p> 
-                      <div class="row "> 
+                      <p class="text-left">Mensajeria con el jefe</p>  
+                      
+                      <div class="row my-2 " th:each="a: ${listMensajes}"> 
                       <div class="col"></div>
                       <div class="col-10"> 
-                        <div class="text-left" style="background-color:rgb(108, 202, 255);" >
-                          <p>Nuestra empresa Tec Group ha creado esta pagina web llamada Work2gether para brindar un ambiente de trabajo en óptimas condiciones, generando transparencia entre los empleados y los supervisores a través de un régimen estadístico sobre su desempeño en ciertas áreas.</p>
-                        </div>
-                        <div style="background-color:rgb(108, 202, 255);" >
-                          <p>Nuestra empresa Tec Group ha creado esta pagina web llamada Work2gether para brindar un ambiente de trabajo en óptimas condiciones, generando transparencia entre los empleados y los supervisores a través de un régimen estadístico sobre su desempeño en ciertas áreas.</p>
-                        </div>
+                      
+                        <div class="d-flex"> 
+                          <p class="text-left">Empleado</p>
+                          </div>
+                          
+                          <div class="d-flex">
+                          <label th:text="${e.Mensaje}"></label>
+                          </div>
+                          
                       </div>
                       <div class="col"></div>
+
                       </div> 
                           <a type="button" th:href="@{/mensaje/Enviar_Jefe}"class="align-content-end btn btn-primary">Crear Mensaje</a>         
+
                   </div>
               </div>
             <div class="col-2"></div>

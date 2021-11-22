@@ -45,11 +45,21 @@ public class MensajeServiceImpl implements IMensajeService{
 	public List<Mensajes> listar() {
 		return dMensaje.findAll();
 	}
-
+	
 	@Override
 	@Transactional(readOnly = true)
 	public List<Mensajes> buscarMensaje(String mensaje) {
 		return dMensaje.buscarMensaje(mensaje);
+	}
+	@Override
+	@Transactional(readOnly = true)
+	public List<Mensajes> emisorCorreo(String Emisor_correo) {
+		return dMensaje.emisorCorreo(Emisor_correo);
+	}
+	@Override
+	@Transactional(readOnly = true)
+	public List<Mensajes> receptorCorreo(String Receptor_correo) {
+		return dMensaje.receptorCorreo(Receptor_correo);
 	}
 	
 	
