@@ -28,11 +28,11 @@ public class Mensajes implements Serializable{
 	@Column(name="FechaMensaje", nullable = false)
 	private Date FechaMensaje;
 	
-	@Column(name="Emisor_id", nullable = false)
-	private int Emisor_id;
+	@Column(name="Emisor_correo", nullable = false, length = 60)
+	private String Emisor_correo;
 	
-	@Column(name="Receptor_id", nullable = false)
-	private int Receptor_id;
+	@Column(name="Receptor_correo", nullable = false, length = 60)
+	private String Receptor_correo;
 	
 	@ManyToOne
 	@JoinColumn(name="idEmpleado", nullable = false)
@@ -43,14 +43,14 @@ public class Mensajes implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Mensajes(int idMensaje, String mensaje, Date fechaMensaje, int emisor_id, int receptor_id, Empleado empleado,
+	public Mensajes(int idMensaje, String mensaje, Date fechaMensaje, String emisor_correo, String receptor_correo, Empleado empleado,
 			Jefe jefe) {
 		super();
 		this.idMensaje = idMensaje;
 		Mensaje = mensaje;
 		FechaMensaje = fechaMensaje;
-		Emisor_id = emisor_id;
-		Receptor_id = receptor_id;
+		Emisor_correo = emisor_correo;
+		Receptor_correo = receptor_correo;
 		this.empleado = empleado;
 	}
 
@@ -78,20 +78,20 @@ public class Mensajes implements Serializable{
 		FechaMensaje = fechaMensaje;
 	}
 
-	public int getEmisor_id() {
-		return Emisor_id;
+	public String getEmisor_correo() {
+		return Emisor_correo;
 	}
 
-	public void setEmisor_id(int emisor_id) {
-		Emisor_id = emisor_id;
+	public void setEmisor_correo(String emisor_correo) {
+		Emisor_correo = emisor_correo;
 	}
 
-	public int getReceptor_id() {
-		return Receptor_id;
+	public String getReceptor_correo() {
+		return Receptor_correo;
 	}
 
-	public void setReceptor_id(int receptor_id) {
-		Receptor_id = receptor_id;
+	public void setReceptor_correo(String receptor_correo) {
+		Receptor_correo = receptor_correo;
 	}
 
 	public Empleado getEmpleado() {
