@@ -6,11 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import pe.edu.upc.spring.model.Anio;
-import pe.edu.upc.spring.model.Empleado;
 import pe.edu.upc.spring.model.Empleado_KPI;
-import pe.edu.upc.spring.model.KPI;
-import pe.edu.upc.spring.model.Mes;
 
 public interface IEmpleadoKPIRepository extends JpaRepository<Empleado_KPI, Integer>{
 	
