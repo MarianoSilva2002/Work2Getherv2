@@ -55,7 +55,7 @@ public class JefeController {
 	
 	@RequestMapping("/empleados")
 	public String irPaginaListadoEmpleadosdelJefe(Map<String, Object> model) {
-		model.put("listaEmpleados", emService.listar());
+		model.put("listaEmpleados", emService.EmpleadosdelJefe(ActividadController.JefeCActiva.getIdJefe()));
 		return "EmpleadosdelJefe"; //"listJefes" es una pagina del frontend.
 	}
 	
@@ -85,7 +85,6 @@ public class JefeController {
 		}
 		else {
 			ActividadController.JefeCActiva =FiltroJefe.get(0);
-			System.out.println(ActividadController.JefeCActiva.getCorreo());
 			return "listJefe";
 		}
 		

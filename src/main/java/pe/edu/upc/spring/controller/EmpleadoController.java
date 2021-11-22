@@ -73,6 +73,7 @@ public class EmpleadoController {
 			return "redirect:/empleado/irInicioSesion";
 		}
 		else {
+			ActividadController.EmpleadoCActiva =FiltroEmpleado.get(0);
 			return "listEmpleado";
 		}
 		

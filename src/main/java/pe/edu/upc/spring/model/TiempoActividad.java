@@ -38,15 +38,18 @@ private static final long serialVersionUID = 11;
 	private Date DiaFinal;
 	
 	@Column(name="TiempoInvertido", nullable = true)
-	private Date TiempoInvertido;
+	private long TiempoInvertido;
 
+	@Column(name="NroPausas", nullable=true)
+	private int NroPausas;
+	
 	public TiempoActividad() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public TiempoActividad(int idTiempoActividad, Date horaInicio, Date horaFin, Date diaInicio, Date diaFinal,
-			Date tiempoInvertido) {
+			long tiempoInvertido, int nroPausas) {
 		super();
 		this.idTiempoActividad = idTiempoActividad;
 		HoraInicio = horaInicio;
@@ -54,6 +57,7 @@ private static final long serialVersionUID = 11;
 		DiaInicio = diaInicio;
 		DiaFinal = diaFinal;
 		TiempoInvertido = tiempoInvertido;
+		NroPausas = nroPausas;
 	}
 
 	public int getIdTiempoActividad() {
@@ -96,12 +100,20 @@ private static final long serialVersionUID = 11;
 		DiaFinal = diaFinal;
 	}
 
-	public Date getTiempoInvertido() {
+	public long getTiempoInvertido() {
 		return TiempoInvertido;
 	}
 
-	public void setTiempoInvertido(Date tiempoInvertido) {
+	public void setTiempoInvertido(long tiempoInvertido) {
 		TiempoInvertido = tiempoInvertido;
+	}
+
+	public int getNroPausas() {
+		return NroPausas;
+	}
+
+	public void setNroPausas(int nroPausas) {
+		NroPausas = nroPausas;
 	}
 
 }

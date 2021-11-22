@@ -37,7 +37,7 @@ public class Actividad implements Serializable{
 	private int HorasEstimadas;
 	
 	@Column(name="HorasInvertidas", nullable = true)
-	private Date HorasInvertidas;
+	private long HorasInvertidas;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="FechaLimite", nullable = false)
@@ -64,7 +64,7 @@ public class Actividad implements Serializable{
 
 	}
 
-	public Actividad(int idActividad, String nombre, String descripcion, int horasEstimadas, Date horasInvertidas,
+	public Actividad(int idActividad, String nombre, String descripcion, int horasEstimadas, long horasInvertidas,
 			Date fechaLimite, String prioridad, String estado, Empleado empleado, TiempoActividad tiempo) {
 		super();
 		this.idActividad = idActividad;
@@ -111,11 +111,11 @@ public class Actividad implements Serializable{
 		HorasEstimadas = horasEstimadas;
 	}
 
-	public Date getHorasInvertidas() {
+	public long getHorasInvertidas() {
 		return HorasInvertidas;
 	}
 
-	public void setHorasInvertidas(Date horasInvertidas) {
+	public void setHorasInvertidas(long horasInvertidas) {
 		HorasInvertidas = horasInvertidas;
 	}
 

@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-   		<title>Iniciar Sesion como</title>
-		<script type="text/javascript"
-			src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<title>Iniciar Sesion como</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
 			</script>
 
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>
 
-		<script src="//code.jquery.com/jquery-1.11.1.min.js">
+<script src="//code.jquery.com/jquery-1.11.1.min.js">
 		</script>
 
-		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-		<link rel="stylesheet" th:href="@{/css/all.min.css}">
-		<link rel="stylesheet" th:href="@{/css/style.css}">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-			crossorigin="anonymous"></script>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/all.min.css}">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+	crossorigin="anonymous"></script>
 
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-			crossorigin="anonymous"></script>
-		<script th:src="@{/js/bootstrap.min.js}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+	crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
 	<div th:replace="fragments/header4 :: header"></div>
@@ -43,60 +46,61 @@
 	<br>
 	<br>
 	<div class="row">
-          <div class="col"></div>
-          <div class="col">
-            <img class ="img-fluid" th:src="@{/img/Work2Gether.png}" alt="Logo de Work2gether">
-          </div>
-          <div class="col"></div>
-        </div>
-<div class="container">
-   <div class="row">
-    <div class="col-md-2 bg-warning pt-4 rounded">
-      <div class="bg-white text-black font-weight-bold rounded">
-        <p>Iniciar Sesion como:</p> 
-      </div>
-    </div>
-    <br>
-    <br>
-  </div>
-  <br>
-    <br>
+		<div class="col"></div>
+		<div class="col">
+			<img class="img-fluid" th:src="@{/img/Work2Gether.png}"
+				alt="Logo de Work2gether">
+		</div>
+		<div class="col"></div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 bg-warning pt-3 rounded">
+				<div class="bg-white text-black font-weight-bold rounded">
+					<p>Iniciar Sesion como:</p>
+				</div>
+			</div>
+			<br> <br>
+		</div>
+		<br> <br>
 
-   <form action="#" class="row justify-content-center border-0 shadow-none">
+		<form action="#"
+			class="row justify-content-center border-0 shadow-none">
 
-  <div class="col-md-5">
-    <div class="col-md-6 bg-primary pt-4 rounded-circle float-left">
-    <img th:src="@{/img/Empleado.png}" class="rounded-circle bg-white" alt="Imagen de Empleado"width="200" height="200">
-  </div>
-  </div>
-  <div class="col-md-5">
-    <div class="col-md-6 bg-primary pt-4 rounded-circle float-right">
-    <img th:src="@{/img/Jefe.png}" class="rounded-circle bg-white" alt="Imagen de Jefe"width="200" height="200">
-  </div>
-  
-  </div>
-</form>
+			<div class="col-md-5">
+				<div class="col-md-6 bg-primary pt-2 rounded-circle float-left">
+					<img th:src="@{/img/Empleado.png}" class="rounded-circle bg-white"
+						alt="Imagen de Empleado" width="200" height="200">
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="col-md-6 bg-primary pt-2 rounded-circle float-right">
+					<img th:src="@{/img/Jefe.png}" class="rounded-circle bg-white"
+						alt="Imagen de Jefe" width="200" height="200">
+				</div>
 
-<br>
-<br>
-<form th:action="@{/empleado/irInicioSesion}" class="row justify-content-center border-0 shadow-none">
-  <div class="col-md-5">
-    <div class="col-md-5 justify-content-center float-left">
-      <button class="btn btn-primary col-md-12 rounded">Empleado</button>
-    </div>
-  </div>
-  </form>
-  <form th:action="@{/jefe/irInicioSesion}" class="row justify-content-center border-0 shadow-none">
-  <div class="col-md-5">
-    <div class="col-md-5 justify-content-center float-right">
-      <button class="btn btn-primary col-md-12 rounded">Jefe</button>
-    </div>
-  </div>
-</form>
+			</div>
+		</form>
 
-  </div>
-        <br>
-        <br>
+		<br> <br>
+		<div class="row">
+			<div class="col-2"></div>
+			<form th:action="@{/empleado/irInicioSesion}"
+				class=" justify-content-center border-0 shadow-none col-md-3">
+				<div class=" justify-content-center float-left">
+					<button class="btn btn-primary col-md-12 rounded">Empleado</button>
+				</div>
+			</form>
+			<form th:action="@{/jefe/irInicioSesion}"
+				class=" justify-content-center border-0 shadow-none col-md-5">
+				<div class="justify-content-center float-right">
+					<button class="btn btn-primary col-md-12 rounded">Jefe</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<br>
+	<br>
 	<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

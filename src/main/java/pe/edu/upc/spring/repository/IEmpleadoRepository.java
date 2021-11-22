@@ -17,4 +17,7 @@ public interface IEmpleadoRepository extends JpaRepository<Empleado, Integer>{
 	
 	@Query("from Empleado c where c.correo = :correo and c.contrasena = :contrasena")
 	List<Empleado> buscarContrasena(@Param("correo") String correo, @Param("contrasena") String contrasena);
+	
+	@Query("from Empleado j where j.jefe.idJefe = :idJefe")
+	List<Empleado> EmpleadosdelJefe(@Param("idJefe") int idJefe);
 }
