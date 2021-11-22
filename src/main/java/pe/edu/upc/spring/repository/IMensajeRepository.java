@@ -11,10 +11,14 @@ import pe.edu.upc.spring.model.Mensajes;
 
 @Repository
 public interface IMensajeRepository extends JpaRepository<Mensajes, Integer>{
-
+	
 	@Query("from Mensajes e where e.Mensaje like %:mensaje%")
 	List<Mensajes> buscarMensaje(@Param("mensaje") String mensaje);
 	
+	@Query("from Mensajes e where e.Emisor_correo like %:Emisor_correo%")
+	List<Mensajes> emisorCorreo(@Param("Emisor_correo") String Emisor_correo);
 	
+	@Query("from Mensajes e where e.Receptor_correo like %:Receptor_correo%")
+	List<Mensajes> receptorCorreo(@Param("Receptor_correo") String Receptor_correo);
 
 }

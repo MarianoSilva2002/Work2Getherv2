@@ -12,4 +12,7 @@ public interface IMensajeService {
 	public Optional<Mensajes> listarId(int idMensajes);
 	public List<Mensajes> listar();
 	public List<Mensajes> buscarMensaje(String mensaje);
+	public List<Mensajes> emisorCorreo(String Emisor_correo);
+	public List<Mensajes> receptorCorreo(String Receptor_correo);
+	
 	}
