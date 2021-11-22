@@ -14,4 +14,5 @@ public interface IEmpleadoService {
 	public List<Empleado> listar();
 	public List<Empleado> buscarEmpleado(String empleado);
 	public List<Empleado> buscarContrasena(String correo, String contrasena);
+	public List<Empleado> EmpleadosdelJefe(int idJefe);
 	}
