@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -44,6 +46,7 @@ public class Actividad implements Serializable{
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date FechaLimite;
 	
+	
 	@Column(name="Prioridad", nullable = false, length = 3)
 	private String Prioridad;
 	
@@ -57,6 +60,7 @@ public class Actividad implements Serializable{
 	@OneToOne
 	@JoinColumn(name="idTiempoActividad", nullable = false)
 	private TiempoActividad tiempo;
+	
 	
 	public Actividad() {
 		super();

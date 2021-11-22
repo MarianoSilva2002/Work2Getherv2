@@ -32,10 +32,18 @@ public class MensajeController {
 	public String irPaginaBienvenida() {
 		return "Mensajeria_Jefe"; //"bienvenido" es una pagina del frontend.
 	}
+	@RequestMapping("/Empleado")
+	public String irPaginaEmpleado() {
+		return "Mensajeria_Empleado"; //"bienvenido" es una pagina del frontend.
+	}
 	
-	@RequestMapping("/Enviar")
+	@RequestMapping("/Enviar_Jefe")
 	public String irPaginaMensaje() {
 		return "Mensaje_Jefe"; //"bienvenido" es una pagina del frontend.
+	}
+	@RequestMapping("/Enviar_Empleado")
+	public String irPaginaJefe() {
+		return "Mensaje_Empleado"; //"bienvenido" es una pagina del frontend.
 	}
 	
 	@RequestMapping("/")
