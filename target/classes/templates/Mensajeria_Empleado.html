@@ -3,7 +3,7 @@
     <head>
         <!-- Required meta tags -->
 		<meta charset="utf-8">
-   		<title>Mensajeria Jefe</title>
+   		<title>Mensajeria Empleado</title>
 		<script type="text/javascript"
 			src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
 			</script>
@@ -38,7 +38,7 @@
 		<script th:src="@{/js/bootstrap.min.js}"></script>
     </head>
     <body>
-        <div th:replace="fragments/header3 :: header"></div>
+       <div th:replace="fragments/header2 :: header"></div>
         <div class="row">
           <div class="col">
             <img class ="img-fluid" th:src="@{/img/Work2Gether.png}" alt="Logo de Work2gether">
@@ -58,7 +58,7 @@
             <div class="col-2"></div>
               <div class="col-8 bg-warning py-3 rounded">
                     <div class="bg-white text-black font-weight-bold rounded">
-                      <p class="text-left">Mensajeria con el jefe</p> 
+                      <p class="text-left">Mensajeria con el empleado</p> 
                       <div class="row "> 
                       <div class="col"></div>
                       <div class="col-10"> 
@@ -71,23 +71,24 @@
                       </div>
                       <div class="col"></div>
                       </div> 
-                          <a type="button" th:href="@{/mensaje/Enviar_Jefe}"class="align-content-end btn btn-primary">Crear Mensaje</a>         
+                          <a type="button" th:href="@{/mensaje/Enviar_Empleado}"class="align-content-end btn btn-primary">Crear Mensaje</a>        
+                          <br><br>    
                   </div>
               </div>
             <div class="col-2"></div>
             </div>
-          </div>
-        </div>
+     
+    
         <br>
         <br>
         <br>
         <br>
-        </div>
+     
         <br>
-        </div>
+    
         <br>
         <br>
-        <div th:replace="fragments/footer :: footer"></div>      
-  </div>
+        <div th:replace="fragments/footer :: footer"></div> 
+ 
     </body>
 </html>
