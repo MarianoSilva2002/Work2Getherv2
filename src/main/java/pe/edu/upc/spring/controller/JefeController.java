@@ -20,7 +20,7 @@ import pe.edu.upc.spring.model.Roles;
 import pe.edu.upc.spring.model.Empleado;
 import pe.edu.upc.spring.model.Empresa;
 import pe.edu.upc.spring.model.Jefe;
-
+import pe.edu.upc.spring.service.IEmpleadoService;
 import pe.edu.upc.spring.service.IEmpresaService;
 import pe.edu.upc.spring.service.IJefeService;
 import pe.edu.upc.spring.service.IRolesService;
@@ -38,6 +38,10 @@ public class JefeController {
 	@Autowired
 	private IJefeService jService;
 	
+	@Autowired
+	private IEmpleadoService emService;
+	
+	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
 		return "listJefe"; //"bienvenido" es una pagina del frontend.
@@ -47,6 +51,12 @@ public class JefeController {
 	public String irPaginaListadoJefes(Map<String, Object> model) {
 		model.put("listaJefes", jService.listar());
 		return "listJefes"; //"listJefes" es una pagina del frontend.
+	}
+	
+	@RequestMapping("/empleados")
+	public String irPaginaListadoEmpleadosdelJefe(Map<String, Object> model) {
+		model.put("listaEmpleados", emService.listar());
+		return "EmpleadosdelJefe"; //"listJefes" es una pagina del frontend.
 	}
 	
 	@RequestMapping("/irRegistrar")
@@ -74,6 +84,8 @@ public class JefeController {
 			return "redirect:/jefe/irInicioSesion";
 		}
 		else {
+			ActividadController.JefeCActiva =FiltroJefe.get(0);
+			System.out.println(ActividadController.JefeCActiva.getCorreo());
 			return "listJefe";
 		}
 		

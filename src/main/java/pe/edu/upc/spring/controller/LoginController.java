@@ -1,6 +1,5 @@
 package pe.edu.upc.spring.controller;
 
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import pe.edu.upc.spring.model.Empleado;
 import pe.edu.upc.spring.model.Empresa;
 import pe.edu.upc.spring.model.Jefe;
 import pe.edu.upc.spring.model.Roles;
-import pe.edu.upc.spring.service.IEmpleadoService;
 import pe.edu.upc.spring.service.IEmpresaService;
 import pe.edu.upc.spring.service.IJefeService;
 import pe.edu.upc.spring.service.IRolesService;
@@ -28,9 +26,6 @@ public class LoginController {
 	private IRolesService rService;
 	
 	@Autowired
-	private IEmpleadoService aService;
-	
-	@Autowired
 	private IEmpresaService eService;
 	
 	@GetMapping("/")
@@ -39,14 +34,12 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/registro")
-	public String irPaginaRegistrarComo(Map<String, Object> model) {
-		model.put("listaEmpleados", jService.listar());
+	public String irPaginaRegistrarComo() {
 		return "login"; //"listEmpleados" es una pagina del frontend...
 	}
 	
 	@RequestMapping("/iniciarSesion")
-	public String irPaginaIniciarSesion(Map<String, Object> model) {
-		model.put("listaEmpleados", jService.listar());
+	public String irPaginaIniciarSesion() {
 		return "login2"; //"listEmpleados" es una pagina del frontend...
 	}
 		
