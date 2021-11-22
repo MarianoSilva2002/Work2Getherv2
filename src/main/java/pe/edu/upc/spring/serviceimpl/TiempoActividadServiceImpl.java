@@ -1,7 +1,9 @@
 package pe.edu.upc.spring.serviceimpl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,4 +48,10 @@ public class TiempoActividadServiceImpl implements ITiempoActividadService{
 		return dTiempoActividad.findAll();
 	}
 	
+	@Override
+	@Transactional
+	public long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+		long diffInMillies = date2.getTime() - date1.getTime();
+	    return timeUnit.convert(diffInMillies,TimeUnit.SECONDS);
+	}
 }

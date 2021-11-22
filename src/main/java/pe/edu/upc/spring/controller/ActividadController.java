@@ -1,9 +1,13 @@
 package pe.edu.upc.spring.controller;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +51,10 @@ public class ActividadController {
 	
 	public static int idActividad;
 	
+	public static Date fechaReanudacion;
+	
+	public TimeUnit timeunit = TimeUnit.SECONDS;
+	
 	@RequestMapping("/NActividad")
 	public String NActicidad() {
 		return "No_Actividades"; //"bienvenido" es una pagina del frontend
@@ -59,7 +67,7 @@ public class ActividadController {
 	@RequestMapping("/ARealizadas")
 	public String ARealizadas(Map<String, Object> model) {
 		List<Actividad> listaActividades;
-        listaActividades= aService.actividadesRealizadas();
+        listaActividades= aService.actividadesRealizadasporEmpleado(EmpleadoCActiva.getIdEmpleado());
         if(listaActividades.isEmpty())
         {
             return "No_Actividades";
@@ -72,9 +80,18 @@ public class ActividadController {
 	}
 	@RequestMapping("/APendientes")
 	public String APendientes(Map<String, Object> model, Model modelo) {
-		model.put("listaActividades", aService.listar());
-		modelo.addAttribute("actividad", new Actividad());
-		return "Actividades_Pendientes"; //"bienvenido" es una pagina del frontend
+		List<Actividad> listaActividades;
+        listaActividades= aService.actividadesRealizadasporEmpleado(EmpleadoCActiva.getIdEmpleado());
+        if(listaActividades.isEmpty())
+        {
+            return "No_Actividades_2";
+        }
+        else
+        {
+            model.put("listaActividades", listaActividades);
+    		modelo.addAttribute("actividad", new Actividad());
+    		return "Actividades_Pendientes"; //"bienvenido" es una pagina del frontend
+        }
 	}
 	@RequestMapping("/")
 	public String irPaginaListadoJefes(Map<String, Object> model, Model modelo) {
@@ -91,7 +108,7 @@ public class ActividadController {
 	
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("listaEmpleados", eService.listar());
+		model.addAttribute("listaEmpleados", eService.EmpleadosdelJefe(JefeCActiva.getIdJefe()));
 		model.addAttribute("listaTiempoActividad", taService.listar());
 		
 		model.addAttribute("empleado", new Empleado());
@@ -104,7 +121,7 @@ public class ActividadController {
 	public String registrar(@ModelAttribute Actividad objActividad, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
 		{
-			model.addAttribute("listaEmpleados", eService.listar());
+			model.addAttribute("listaEmpleados", eService.EmpleadosdelJefe(JefeCActiva.getIdJefe()));
 			model.addAttribute("listaTiempoActividad", taService.listar());
 			return "actividad";
 		}
@@ -129,7 +146,7 @@ public class ActividadController {
 			return "redirect:/actividad/listar";
 		}
 		else {
-			model.addAttribute("listaEmpleados", eService.listar());
+			model.addAttribute("listaEmpleados", eService.EmpleadosdelJefe(JefeCActiva.getIdJefe()));
 			model.addAttribute("listaTiempoActividad", taService.listar());
 			if(objActividad.isPresent())				
 				objActividad.ifPresent(o -> model.addAttribute("actividad",o));
@@ -143,14 +160,14 @@ public class ActividadController {
 		try {
 			if(id!=null && id>0) {
 				aService.eliminar(id);
-				model.put("listaActividades", aService.listar());
+				model.put("listaActividades", aService.actividadesRealizadasCreadasporJefe(JefeCActiva.getIdJefe()));
 				modelo.addAttribute("actividad", new Actividad());
 			}
 		}
 		catch(Exception ex){
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
-			model.put("listaActividades", aService.listar());
+			model.put("listaActividades", aService.actividadesRealizadasCreadasporJefe(JefeCActiva.getIdJefe()));
 			modelo.addAttribute("actividad", new Actividad());
 		}
 		return "listActividades";
@@ -241,7 +258,7 @@ public class ActividadController {
 			return "redirect:/actividad/APendientes";
 		}
 		else {
-			if(ActividadEnProceso )
+			if(ActividadEnProceso)
 			{
 				objRedir.addFlashAttribute("mensaje","Ya hay una actividad en proceso");
 				return "redirect:/actividad/APendientes";
@@ -252,10 +269,18 @@ public class ActividadController {
 				Actividad actividad = objActividad.get();
 				TiempoActividad objTA = actividad.getTiempo();
 				idActividad = actividad.getIdActividad();
-				objTA.setDiaInicio(fechaactual);
-				objTA.setHoraInicio(fechaactual);
+				if(objTA.getNroPausas()==0) 
+				{
+					objTA.setDiaInicio(fechaactual);
+					objTA.setHoraInicio(fechaactual);
+				}
+				else
+					fechaReanudacion = fechaactual;
+				
 				taService.grabar(objTA);
 				ActividadEnProceso=true;
+				actividad.setEstado("En Proceso");
+				aService.grabar(actividad);
 				return "redirect:/actividad/APendientes";
 			}		
 		}
@@ -277,18 +302,59 @@ public class ActividadController {
 			else
 			{
 				Date fechaactual = new Date();
+				Actividad actividad = objActividad.get();
+				TiempoActividad objTA = actividad.getTiempo();
+				if(objTA.getNroPausas()==0) 
+				{
+					objTA.setTiempoInvertido((Long)(taService.getDateDiff(objTA.getHoraInicio(), fechaactual, timeunit)));
+				}
+				else
+				{
+					objTA.setTiempoInvertido((Long)(taService.getDateDiff(fechaReanudacion, fechaactual, timeunit))+objTA.getTiempoInvertido());
+				}
+				objTA.setNroPausas(objTA.getNroPausas()+1);
+				taService.grabar(objTA);
+				ActividadEnProceso=false;
+				return "redirect:/actividad/APendientes";
+			}		
+		}
+	}
+	
+	@RequestMapping("/finalizar/{id}")
+	public String finalizarActividad(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException{
+		Optional<Actividad> objActividad = aService.listarId(id);
+		if(objActividad == null) {
+			objRedir.addFlashAttribute("mensaje","Ocurrio un roche, LUZ ROJA");
+			return "redirect:/actividad/APendientes";
+		}
+		else {
+			if(!ActividadEnProceso || idActividad != id)
+			{
+				objRedir.addFlashAttribute("mensaje","No se está realizando esa actividad");
+				return "redirect:/actividad/APendientes";
+			}
+			else
+			{
+				Date fechaactual = new Date();
 				Date HoraFinal = fechaactual;
 				Date DiaFinal = fechaactual;
 				
 				Actividad actividad = objActividad.get();
 				TiempoActividad objTA = actividad.getTiempo();
-				
-				Date fechainicio = objTA.getDiaInicio();
-				fechainicio = objTA.getHoraInicio();
-				
-				//objTA.setTiempoInvertido((Date)(fechaactual.getTime() - fechainicio.getTime()));
-				
+				if(objTA.getNroPausas()==0) 
+				{
+					objTA.setTiempoInvertido((Long)(taService.getDateDiff(objTA.getHoraInicio(), fechaactual, timeunit)));
+				}
+				else
+				{
+					objTA.setTiempoInvertido((Long)(taService.getDateDiff(fechaReanudacion, fechaactual, timeunit))+objTA.getTiempoInvertido());
+				}
+				objTA.setDiaFinal(DiaFinal);
+				objTA.setHoraFin(HoraFinal);
+				objTA.setNroPausas(objTA.getNroPausas()+1);
 				taService.grabar(objTA);
+				actividad.setEstado("Realizado");
+				aService.grabar(actividad);
 				ActividadEnProceso=false;
 				return "redirect:/actividad/APendientes";
 			}		
