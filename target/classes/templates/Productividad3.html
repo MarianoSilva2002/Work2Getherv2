@@ -13,7 +13,12 @@
 
 		<script src="//code.jquery.com/jquery-1.11.1.min.js">
 		</script>
-
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+   	 $(document).ready(function(){
+    	    $("#myModal").modal('show');
+   	 });
+	</script>
 		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 		<link rel="stylesheet" th:href="@{/css/all.min.css}">
 		<link rel="stylesheet" th:href="@{/css/style.css}">
@@ -65,7 +70,7 @@
               <div class="col-10 bg-warning py-3 rounded">
                     <div class="bg-white text-black font-weight-bold rounded">
                       <p class="text-center">Productividad</p> 
-                      <div class="row">
+                      <div class="row invisible">
                         <div class="col-6">
                           <div class="bg-warning pt-2 pb-1 px-3 ml-3 rounded">
                             <div class="bg-white text-black font-weight-bold rounded">
@@ -85,7 +90,7 @@
 
 
 
-                      <div class="row">
+                      <div class="row invisible">
                         <div class="col-6">
                           <div class="bg-warning pt-2 pb-1 px-3 ml-3 rounded">
                             <div class="bg-white text-black font-weight-bold rounded">
@@ -104,7 +109,7 @@
                       <br>
 
 
-                      <div class="row">
+                      <div class="row invisible">
                         <div class="col-6">
                           <div class="bg-warning pt-2 pb-1 px-3 ml-3 rounded">
                             <div class="bg-white text-black font-weight-bold rounded">
@@ -115,7 +120,7 @@
                         <div class="col-6">
                           <div class="bg-warning pt-2 pb-1 px-3 mr-3 rounded">
                             <div class="bg-white text-black font-weight-bold rounded">
-             			<img class ="img-fluid" th:src="@{/img/1.png}" alt="Diagrama de lineas">
+                              <img class ="img-fluid" th:src="@{/img/1.png}" alt="Diagrama de lineas">
                             </div>
                           </div> 
                         </div>
@@ -123,7 +128,7 @@
                       <br>
 
 
-                      <div class="row">
+                      <div class="row invisible">
                         <div class="col-6">
                           <div class="bg-warning pt-2 pb-1 px-3 ml-3 rounded">
                             <div class="bg-white text-black font-weight-bold rounded">
@@ -142,24 +147,51 @@
                       <br>
 
                       
-                      <div class="row">
+                      <div class="row invisible">
                         <div class="col-6">
                           <div class="bg-warning pt-2 pb-1 px-3 ml-3 rounded">
                             <div class="bg-white text-black font-weight-bold rounded">
-             			<img class ="img-fluid" th:src="@{/img/1.png}" alt="Diagrama de lineas">
+                              <img class ="img-fluid" th:src="@{/img/1.png}" alt="Diagrama de lineas">
                             </div>
                           </div> 
                         </div>
                         <div class="col-6">
                           <div class="bg-warning pt-2 pb-1 px-3 mr-3 rounded">
                             <div class="bg-white text-black font-weight-bold rounded">
-             					<img class ="img-fluid" th:src="@{/img/1.png}" alt="Diagrama de lineas">
+                              <img class ="img-fluid" th:src="@{/img/1.png}" alt="Diagrama de lineas">
                             </div>
                           </div> 
                         </div>
                       </div>
                       <br>
-                  
+                    
+                      
+                      <!-- The Modal -->
+                      <div class="modal fade" id="myModal">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                      
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h4 class="text-danger modal-title" >Alerta</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                      
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                              El jefe no asigno los KPIS
+                            </div>
+                      
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            </div>
+                      
+                          </div>
+                        </div>
+                      </div>
+                          
+                              
                   </div>
               </div>
             <div class="col-1"></div>

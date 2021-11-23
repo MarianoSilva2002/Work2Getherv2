@@ -21,4 +21,8 @@ public interface IEmpleadoKPIRepository extends JpaRepository<Empleado_KPI, Inte
 	
 	@Query("from Empleado_KPI m where m.mes.mes like %:mes%")
 	List<Empleado_KPI> buscarMes(@Param("mes") String mes);	
+	
+	@Query("from Empleado_KPI m where m.mes.mes like %:mes% and m.anio.anio = :anio and m.empleado.idEmpleado =:empleado")
+	List<Empleado_KPI> filtroKPIs(@Param("mes") String mes, @Param("anio") int anio, @Param("empleado") int empleado);
+	
 }

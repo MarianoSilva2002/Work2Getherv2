@@ -16,11 +16,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
+import pe.edu.upc.spring.model.Actividad;
 import pe.edu.upc.spring.model.Anio;
 import pe.edu.upc.spring.model.Empleado;
 import pe.edu.upc.spring.model.Empleado_KPI;
 import pe.edu.upc.spring.model.KPI;
 import pe.edu.upc.spring.model.Mes;
+import pe.edu.upc.spring.service.IActividadService;
 import pe.edu.upc.spring.service.IAnioService;
 import pe.edu.upc.spring.service.IEmpleadoKPIService;
 import pe.edu.upc.spring.service.IEmpleadoService;
@@ -46,13 +48,33 @@ public class EmpleadoKPIController {
 	@Autowired
 	private IEmpleadoKPIService vService;
 	
+	@Autowired
+	private IActividadService acService;
+	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
 		return "bienvenido"; //"bienvenido" es una pagina del frontend
 	}
 	@RequestMapping("/productividad")
-	public String productividad() {
-		return "Productividad2"; //"bienvenido" es una pagina del frontend
+	public String productividad(Map<String, Object> model) {
+		List<KPI> listaKPIs = kService.listar();
+		if(listaKPIs.isEmpty())
+		{
+			return "Productividad3";
+		}
+		else
+		{
+			List<Actividad> listaActividades = acService.actividadesRealizadasporEmpleado(ActividadController.EmpleadoCActiva.getIdEmpleado());
+			if(listaActividades.isEmpty())
+			{
+				return "Productividad4";
+			}
+			else
+			{				
+			model.put("listaEmpleado_KPI", vService.listar());
+			return "Productividad2"; //"listEmpleados" es una pagina del frontend
+			}
+		}
 	}
 	
 	@RequestMapping("/productividadnokpi")
@@ -75,8 +97,13 @@ public class EmpleadoKPIController {
 	}
 	
 	@RequestMapping("/empleado")
-	public String irPaginaProdxEmpleado(Map<String, Object> model) {
+	public String irPaginaProdxEmpleado(Map<String, Object> model, Model modelo) {
 		model.put("listaEmpleado_KPI", vService.listar());
+		model.put("listaMes", mService.listar());
+		model.put("listaAnios", aService.listar());
+		model.put("listaKPI", kService.listar());
+		model.put("listaEmpleados", jService.EmpleadosdelJefe(ActividadController.JefeCActiva.getIdJefe()));
+		modelo.addAttribute("empleadoKPI", new Empleado_KPI());
 		return "productividadporempleado"; //"listEmpleados" es una pagina del frontend
 	}
 	
@@ -167,30 +194,25 @@ public class EmpleadoKPIController {
 		return "buscar";
 	}
 	
-	//@RequestMapping("/buscar")
-	//public String buscar(Map<String, Object> model, @ModelAttribute Empleado_KPI empleado_KPI) throws ParseException 
-	//{
-	//	List<Empleado_KPI> listaEmpleado_KPI;
-	//	Empleado_KPI.setNombre(empleado_KPI.getNombre());
-	//	listaEmpleado_KPI = vService.buscarNombre(empleado_KPI.getNombre());
-	//	
-	//	if(listaEmpleado_KPI.isEmpty()) {
-	//		listaEmpleado_KPI = vService.buscarAnio(empleado_KPI.getNombre());
-	//	}
-	//	if(listaEmpleado_KPI.isEmpty()) {
-	//		listaEmpleado_KPI = vService.buscarMes(empleado_KPI.getNombre());
-	//	}
-	//	if(listaEmpleado_KPI.isEmpty()) {
-	//		listaEmpleado_KPI = vService.buscarEmpleado(empleado_KPI.getNombre());
-	//	}
-	//	if(listaEmpleado_KPI.isEmpty()) {
-	//		listaEmpleado_KPI = vService.buscarKPI(empleado_KPI.getNombre());
-	//	}	
-	//	if(listaEmpleado_KPI.isEmpty()) {
-	//		model.put("mensaje", "No existen coincidencias");
-	//	}
-	//	
-	//	model.put("listaEmpleado_KPI", listaEmpleado_KPI);
-	//	return "buscar";
-	//}
+	@RequestMapping("/buscar")
+	public String buscar(Map<String, Object> model, @ModelAttribute Empleado_KPI empleado_KPI) throws ParseException 
+	{
+		empleado_KPI.setAnio(aService.listarId(empleado_KPI.getAnio().getIdAnio()).get());
+		empleado_KPI.setEmpleado(jService.listarId(empleado_KPI.getEmpleado().getIdEmpleado()).get());
+		empleado_KPI.setMes(mService.listarId(empleado_KPI.getMes().getIdMes()).get());
+		List<Empleado_KPI> listaEmpleado_KPI;
+		listaEmpleado_KPI = vService.filtroKPIs(empleado_KPI.getMes().getMes(), empleado_KPI.getAnio().getAnio(), empleado_KPI.getEmpleado().getIdEmpleado());
+	
+		if(listaEmpleado_KPI.isEmpty()) {
+			model.put("mensaje", "No existen coincidencias");
+		}
+		
+		model.put("listaEmpleado_KPI", listaEmpleado_KPI);
+		model.put("listaMes", mService.listar());
+		model.put("listaAnios", aService.listar());
+		model.put("listaKPI", kService.listar());
+		model.put("listaEmpleados", jService.EmpleadosdelJefe(ActividadController.JefeCActiva.getIdJefe()));
+		model.put("empleadoKPI", empleado_KPI);
+		return "productividadporempleado";
+	}
 }

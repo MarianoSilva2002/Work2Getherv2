@@ -13,7 +13,7 @@
 
 		<script src="//code.jquery.com/jquery-1.11.1.min.js">
 		</script>
-
+	
 		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 		<link rel="stylesheet" th:href="@{/css/all.min.css}">
 		<link rel="stylesheet" th:href="@{/css/style.css}">
@@ -63,6 +63,7 @@
               <a type="button" th:href="@{/actividad/ARealizadas}"class="align-content-end btn btn-primary">Actividades Realizadas</a>  
               <a type="button" th:href="@{/actividad/APendientes}"class="align-content-end btn btn-primary">Actividades Pendientes</a>
           </div>
+          
           <br>
           <div class="row text-center">
             <div class="col-1"></div>
@@ -80,7 +81,7 @@
                           <label th:text="${a.Nombre}"> </label>
                           </div>
                           <div class="d-flex">
-                          <p class="text-left mr-1"> Tiempo invertido en esta actividad:   </p><label th:text="${#dates.format(a.FechaLimite,'dd/MM/yyyy')}"></label>
+                          <p class="text-left mr-1"> Tiempo invertido en esta actividad:   </p><label th:text="${a.HorasInvertidas}"></label>
                           </div>
                         <div style="background-color:rgb(235, 113, 14);" >
                           <p>ㅤㅤ </p>

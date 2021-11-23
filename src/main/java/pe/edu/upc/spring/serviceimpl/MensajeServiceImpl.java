@@ -61,6 +61,12 @@ public class MensajeServiceImpl implements IMensajeService{
 	public List<Mensajes> receptorCorreo(String Receptor_correo) {
 		return dMensaje.receptorCorreo(Receptor_correo);
 	}
+
+
+	@Override
+	public List<Mensajes> mensajesEmpleadoyJefe(int idEmpleado) {
+		return dMensaje.mensajesEmpleadoyJefe(idEmpleado);
+	}
 	
 	
 }
