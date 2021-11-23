@@ -14,5 +14,5 @@ public interface IMensajeService {
 	public List<Mensajes> buscarMensaje(String mensaje);
 	public List<Mensajes> emisorCorreo(String Emisor_correo);
 	public List<Mensajes> receptorCorreo(String Receptor_correo);
-	
+	public List<Mensajes> mensajesEmpleadoyJefe(int idEmpleado);
 	}

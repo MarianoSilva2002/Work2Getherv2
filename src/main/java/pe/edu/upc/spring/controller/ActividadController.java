@@ -81,7 +81,7 @@ public class ActividadController {
 	@RequestMapping("/APendientes")
 	public String APendientes(Map<String, Object> model, Model modelo) {
 		List<Actividad> listaActividades;
-        listaActividades= aService.actividadesRealizadasporEmpleado(EmpleadoCActiva.getIdEmpleado());
+        listaActividades= aService.actividadesCreadasporEmpleado(EmpleadoCActiva.getIdEmpleado());
         if(listaActividades.isEmpty())
         {
             return "No_Actividades_2";
@@ -102,8 +102,17 @@ public class ActividadController {
 	
 	@RequestMapping("/Realizadas")
 	public String irPaginaListadoActRealizadas(Map<String, Object> model, Model modelo) {
-		model.put("listaActividades", aService.actividadesRealizadasCreadasporJefe(JefeCActiva.getIdJefe()));
+		List<Actividad> listaActividades = aService.actividadesRealizadasCreadasporJefe(JefeCActiva.getIdJefe());
+		if(listaActividades.isEmpty())
+		{
+			return "listActividadesRealizadasJefe2"; 
+		}
+		else
+		{
+			
+		model.put("listaActividades", listaActividades);
 		return "listActividadesRealizadasJefe"; //"listActividades" es una pagina del frontend
+		}
 	}
 	
 	@RequestMapping("/irRegistrar")
