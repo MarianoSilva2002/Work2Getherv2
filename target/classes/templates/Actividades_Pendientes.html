@@ -78,7 +78,7 @@
                               <p>Filtros: </p>
                             </div>
                             <div class="col-10">
-                              <form th:action="@{/actividad/filtro2}" method="post" th:object="${actividad}" class="d-flex">
+                              <form th:action="@{/jefe/buscar}" method="post" th:object="${actividad}" class="d-flex">
                            		 <div class="row">
                            		 	<div class="col-8">
                                 		<select th:field="*{Prioridad}" name="cars" class="custom-select " placeholder="Seleccionar">
@@ -111,8 +111,8 @@
                         </div>
                         <div class="container text-center">
                           <a type="submit" class="btn btn-primary" th:href="@{'/actividad/iniciar/'} + ${a.idActividad}">Iniciar</a>
-                          <button type="button" class="btn btn-primary">Pausar</button>
-                          <button type="button" class="btn btn-primary">Finalizar</button>
+                          <a type="submit" class="btn btn-primary" th:href="@{'/actividad/pausar/'} + ${a.idActividad}">Pausar</a>
+                          <a type="submit" class="btn btn-primary" th:href="@{'/actividad/finalizar/'} + ${a.idActividad}">Finalizar</a>
                       </div>
                       </div>
                       <div class="col"></div>

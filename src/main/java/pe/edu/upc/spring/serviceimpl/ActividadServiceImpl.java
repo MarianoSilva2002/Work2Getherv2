@@ -37,6 +37,7 @@ public class ActividadServiceImpl implements IActividadService{
 		else
 		{
 			TiempoActividad ta = new TiempoActividad();
+			ta.setNroPausas(0);
 			taService.grabar(ta);
 			Actividad.setTiempo(taService.listar().get(taService.listar().size()-1));
 			Actividad.setEstado("Pendiente");
@@ -113,5 +114,46 @@ public class ActividadServiceImpl implements IActividadService{
 	 @Transactional(readOnly=true)
 	 public List<Actividad> actividadesOrderByFechaLimite() {
 	    return dActividad.actividadesOrderByFechaLimite();
+	}
+
+	@Override	 
+	@Transactional(readOnly=true)
+	public List<Actividad> filtroporJefe(String estado, String priodidad, int idJefe) {
+		return dActividad.filtroporJefe(estado, priodidad, idJefe);
+	}
+
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Actividad> actividadesOrderByFechaLimiteporJefe(int idJefe) {
+		return dActividad.actividadesOrderByFechaLimiteporJefe(idJefe);
+	}
+
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Actividad> actividadesOrderByFechaLimiteporEmpleado(int idEmpleado) {
+		return dActividad.actividadesOrderByFechaLimiteporEmpleado(idEmpleado);
+	}
+
+
+	@Override
+	@Transactional(readOnly=true)
+	public int existeActividad(int idActividad) {
+		return dActividad.existeActividad(idActividad);
+	}
+
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Actividad> actividadesRealizadasporEmpleado(int idEmpleado) {
+		return dActividad.actividadesRealizadasporEmpleado(idEmpleado);
+	}
+
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Actividad> actividadesCreadasporEmpleado(int idEmpleado) {
+		return dActividad.actividadesCreadasporEmpleado(idEmpleado);
 	}
 }

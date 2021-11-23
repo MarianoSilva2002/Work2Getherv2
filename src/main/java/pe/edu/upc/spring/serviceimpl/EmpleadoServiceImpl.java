@@ -57,5 +57,11 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
 	public List<Empleado> buscarContrasena(String correo, String contrasena) {
 		return dEmpleado.buscarContrasena(correo, contrasena);
 	}
+
+
+	@Override
+	public List<Empleado> EmpleadosdelJefe(int idJefe) {
+		return dEmpleado.EmpleadosdelJefe(idJefe);
+	}
 	
 }
