@@ -31,12 +31,12 @@ public class Actividad implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idActividad;
 	
-	@NotEmpty
+	@NotEmpty(message="El nombre de la activida es necesaria")
 	@Size(min=4, max=20)
 	@Column(name="Nombre")
 	private String Nombre;
 	
-	@NotEmpty
+	@NotEmpty (message="La descripcion de la activida es necesaria")
 	@Size(min=10, max=60)
 	@Column(name="Descripcion")
 	private String Descripcion;
@@ -47,8 +47,8 @@ public class Actividad implements Serializable{
 	@Column(name="HorasInvertidas", nullable = true)
 	private long HorasInvertidas;
 	
-	@NotNull(message = "La fecha es obligatoria")
-	@Future(message = "La fecha debe estar en el futuro")
+	@NotNull(message = "La fecha de la actividad es obligatoria")
+	@Future(message = "La fecha de la actividad debe de estar en el futuro")
 	@Temporal(TemporalType.DATE)
 	@Column(name="FechaLimite", nullable = false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
