@@ -26,6 +26,7 @@ import pe.edu.upc.spring.service.IEmpleadoService;
 import pe.edu.upc.spring.service.IEmpresaService;
 import pe.edu.upc.spring.service.IJefeService;
 import pe.edu.upc.spring.service.IRolesService;
+import pe.edu.upc.spring.service.IActividadService;
 
 @Controller
 @RequestMapping("/jefe")
@@ -43,9 +44,12 @@ public class JefeController {
 	@Autowired
 	private IEmpleadoService emService;
 	
+	@Autowired
+	private IActividadService aService;
 	
 	@RequestMapping("/bienvenido")
-	public String irPaginaBienvenida() {
+	public String irPaginaBienvenida(Model model) {
+		model.addAttribute("listaActividades", aService.actividadesCreadasporJefe(ActividadController.JefeCActiva.getIdJefe()));
 		return "listJefe"; //"bienvenido" es una pagina del frontend.
 	}
 	
@@ -87,7 +91,7 @@ public class JefeController {
 		}
 		else {
 			ActividadController.JefeCActiva =FiltroJefe.get(0);
-			return "listJefe";
+			return "redirect:/jefe/bienvenido";
 		}
 		
 	}
