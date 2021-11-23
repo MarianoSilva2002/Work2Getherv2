@@ -20,11 +20,11 @@ public class Roles implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idRol;
 	
-	@NotEmpty
+	@NotEmpty(message="El nombre del rol es necesario")
 	@Column(name="Nombre", nullable = false, length = 60)
 	private String Nombre;
 	
-	@NotEmpty
+	@NotEmpty(message="La descripcion del rol es necesaria")
 	@Column(name="Descripcion", nullable = false, length = 200)
 	private String Descripcion;
 
