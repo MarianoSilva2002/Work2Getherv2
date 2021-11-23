@@ -179,7 +179,12 @@
           </tr>
         </thead>
         <tbody>
-        
+        <tr th:each="a: ${listaActividades}">
+        				<td th:text="${a.empleado.Nombre}"></td>
+						<td th:text="${a.Nombre}"></td>
+						<td th:text="${a.Estado}"></td>
+						<td th:text="${a.Prioridad}"></td>
+					</tr> 
         </tbody>
       </table>
     </div>
