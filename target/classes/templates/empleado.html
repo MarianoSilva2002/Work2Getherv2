@@ -70,8 +70,8 @@
 				<div
 					class="bg-white text-black font-weight-bold rounded pt-2 text-center">
 					<input th:field="*{nombre}" type="text"
-						placeholder="Nombre de Usuario..." class="form-control"
-						name="uname" required>
+						placeholder="Nombre de Usuario..." class="form-control" th:errorclass="'form-control alert-danger'">
+						<small	class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
 				</div>
 			</div>
 		</div>
@@ -90,8 +90,8 @@
 				<div
 					class="bg-white text-black font-weight-bold rounded pt-2 text-center">
 					<input th:field="*{aPaterno}" type="text"
-						placeholder="Apellido Paterno..." class="form-control"
-						name="uname" required>
+						placeholder="Apellido Paterno..." class="form-control" th:errorclass="'form-control alert-danger'">
+										<small	class="form-text text-danger" th:if="${#fields.hasErrors('aPaterno')}" th:errors="*{aPaterno}"></small>
 				</div>
 			</div>
 		</div>
@@ -110,8 +110,8 @@
 				<div
 					class="bg-white text-black font-weight-bold rounded pt-2 text-center">
 					<input th:field="*{aMaterno}" type="text"
-						placeholder="Apellido Materno..." class="form-control"
-						name="uname" required>
+						placeholder="Apellido Materno..." class="form-control" th:errorclass="'form-control alert-danger'">	
+										<small	class="form-text text-danger" th:if="${#fields.hasErrors('aMaterno')}" th:errors="*{aMaterno}"></small>
 				</div>
 			</div>
 		</div>
@@ -130,8 +130,8 @@
 				<div
 					class="bg-white text-black font-weight-bold rounded pt-2 text-center">
 					<input th:field="*{contrasena}" type="text"
-						placeholder="Contraseña..." class="form-control" name="uname"
-						required>
+						placeholder="Contraseña..." class="form-control" th:errorclass="'form-control alert-danger'" >						
+										<small	class="form-text text-danger" th:if="${#fields.hasErrors('contrasena')}" th:errors="*{contrasena}"></small>
 				</div>
 			</div>
 		</div>
@@ -150,7 +150,7 @@
 				<div
 					class="bg-white text-black font-weight-bold rounded pt-2 text-center">
 					<input type="text" placeholder="Confirmar Contraseña..."
-						class="form-control" name="uname" required>
+						class="form-control" >
 				</div>
 			</div>
 		</div>
@@ -168,9 +168,9 @@
 			<div class="col-md-3 bg-warning pt-3 rounded">
 				<div
 					class="bg-white text-black font-weight-bold rounded pt-2 text-center">
-					<input th:field="*{correo}" type="text"
-						placeholder="Correo Electronico..." class="form-control"
-						name="uname" required>
+					<input th:field="*{correo}" type="email"
+						placeholder="Correo Electronico..." class="form-control" th:errorclass="'form-control alert-danger'">
+										<small	class="form-text text-danger" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></small>
 				</div>
 			</div>
 		</div>
@@ -189,7 +189,8 @@
 				<div
 					class="bg-white text-black font-weight-bold rounded pt-2 text-center">
 					<input th:field="*{genero}" type="text" placeholder="Género..."
-						class="form-control" name="uname" required>
+						class="form-control" th:errorclass="'form-control alert-danger'" >
+										<small	class="form-text text-danger" th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></small>
 				</div>
 			</div>
 		</div>

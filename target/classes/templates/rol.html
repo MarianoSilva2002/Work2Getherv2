@@ -77,9 +77,11 @@
                   </div>
                   <div class="col-6">
                     <div class="form-group">
-                      <input type="text" class="form-control pr-3" th:field="*{Nombre}" id="usr">
-										<div class="alert alert-danger" th:if="${#fields.hasErrors('Nombre')}"  th:errors="*{Nombre}">
-										</div>
+                      <input type="text" class="form-control"
+										th:errorclass="'form-control alert-danger'" th:field="*{Nombre}" id="usr">
+										<small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('Nombre')}" th:errors="*{Nombre}"></small>
                     </div>
                   </div>
                 </div>
@@ -94,9 +96,11 @@
                   </div>
                   <div class="col-6">
                     <div class="form-group">
-                      <input type="text" class="form-control pr-3" th:field="*{Descripcion}" id="usr">
-										<div class="alert alert-danger" th:if="${#fields.hasErrors('Nombre')}"  th:errors="*{Nombre}">
-										</div>
+                      <input type="text" class="form-control"
+										th:errorclass="'form-control alert-danger'" th:field="*{Descripcion}" id="usr">
+										<small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('Descripcion')}" th:errors="*{Descripcion}"></small>
                     </div>
                   </div>
                 </div>

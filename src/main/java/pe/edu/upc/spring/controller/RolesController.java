@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +48,7 @@ public class RolesController {
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Roles objRol, BindingResult binRes, Model model) throws ParseException{
+	public String registrar(@Valid @ModelAttribute("rol") Roles objRol, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
 		{
 			return "rol";
