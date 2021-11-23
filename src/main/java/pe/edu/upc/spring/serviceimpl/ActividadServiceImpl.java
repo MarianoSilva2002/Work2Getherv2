@@ -58,7 +58,7 @@ public class ActividadServiceImpl implements IActividadService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Actividad listarId(int idActividad) {
+	public Optional<Actividad> listarId(int idActividad) {
 		return dActividad.findById(idActividad);
 	}
 
