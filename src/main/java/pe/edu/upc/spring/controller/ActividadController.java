@@ -163,14 +163,14 @@ public class ActividadController {
 		try {
 			if(id!=null && id>0) {
 				aService.eliminar(id);
-				model.put("listaActividades", aService.actividadesRealizadasCreadasporJefe(JefeCActiva.getIdJefe()));
+				model.put("listaActividades", aService.actividadesCreadasporJefe(JefeCActiva.getIdJefe()));
 				modelo.addAttribute("actividad", new Actividad());
 			}
 		}
 		catch(Exception ex){
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
-			model.put("listaActividades", aService.actividadesRealizadasCreadasporJefe(JefeCActiva.getIdJefe()));
+			model.put("listaActividades", aService.actividadesCreadasporJefe(JefeCActiva.getIdJefe()));
 			modelo.addAttribute("actividad", new Actividad());
 		}
 		return "listActividades";

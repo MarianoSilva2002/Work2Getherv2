@@ -60,8 +60,7 @@
         <br>
         <br>
         <br>
-        <div class="container">
-
+        
           <div class="modal" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -116,7 +115,7 @@
           </div>
        
 
-          <div class="container">
+          
             <div class="col text-center">
               <div class="container">
                 <div class="bg-warning pt-3 px-2 pb-1 rounded">
@@ -128,13 +127,13 @@
             </div>
             <br>
           <br>
-          
+          <div class="container">
           <div class="table-responsive text-center">
 			<table id="example" style="width: 100%"
 				class="table table-hover table-bordered">
 				<thead style="background-color: rgb(255, 193, 7);">
                 <tr>
-                  <th>Nombre del documento</th>
+                  <th>Nombre</th>
                   <th>Descripcion</th>
                   <th>Fecha Limite</th>
                   <th>Prioridad</th>  
@@ -150,9 +149,7 @@
               </tbody>
             </table>
            </div>
-               </div>
-            </div>
-          </div>
+           </div>
           
     <br>
     <br>
@@ -182,12 +179,7 @@
           </tr>
         </thead>
         <tbody>
-        <tr th:each="a: ${listaActividades}">
-        				<td th:text="${a.empleado.Nombre}"></td>
-						<td th:text="${a.Nombre}"></td>
-						<td th:text="${a.Estado}"></td>
-						<td th:text="${a.Prioridad}"></td>
-					</tr>
+        
         </tbody>
       </table>
     </div>
