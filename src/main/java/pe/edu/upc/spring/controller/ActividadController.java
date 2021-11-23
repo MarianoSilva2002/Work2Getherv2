@@ -265,7 +265,7 @@ public class ActividadController {
 
 	@RequestMapping("/iniciar/{id}")
 	public String inicioActividad(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException{
-		Optional<Actividad> objActividad = aService.listarId(id);
+		Actividad objActividad = aService.listarId(id);
 		if(objActividad == null) {
 			objRedir.addFlashAttribute("mensaje","Ocurrio un roche, LUZ ROJA");
 			return "redirect:/actividad/APendientes";
@@ -301,7 +301,7 @@ public class ActividadController {
 	
 	@RequestMapping("/pausar/{id}")
 	public String pausarActividad(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException{
-		Optional<Actividad> objActividad = aService.listarId(id);
+		Actividad objActividad = aService.listarId(id);
 		if(objActividad == null) {
 			objRedir.addFlashAttribute("mensaje","Ocurrio un roche, LUZ ROJA");
 			return "redirect:/actividad/APendientes";
@@ -335,7 +335,7 @@ public class ActividadController {
 	
 	@RequestMapping("/finalizar/{id}")
 	public String finalizarActividad(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException{
-		Optional<Actividad> objActividad = aService.listarId(id);
+		Actividad objActividad = aService.listarId(id);
 		if(objActividad == null) {
 			objRedir.addFlashAttribute("mensaje","Ocurrio un roche, LUZ ROJA");
 			return "redirect:/actividad/APendientes";
