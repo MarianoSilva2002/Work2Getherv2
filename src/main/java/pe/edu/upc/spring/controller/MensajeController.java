@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -16,8 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
+import pe.edu.upc.spring.model.Empleado;
 import pe.edu.upc.spring.model.Mensajes;
-
+import pe.edu.upc.spring.service.IEmpleadoService;
 import pe.edu.upc.spring.service.IMensajeService;
 
 @Controller
@@ -28,21 +30,33 @@ public class MensajeController {
 	@Autowired
 	private IMensajeService eService;
 	
+	@Autowired
+	private IEmpleadoService emService;
+	
+	private int idEmpleado;
+	
 	@RequestMapping("/Jefe")
-	public String irPaginaBienvenida() {
+	public String irPaginaJefe(Map<String, Object> model) {
+		model.put("listMensajes", eService.mensajesEmpleadoyJefe(ActividadController.EmpleadoCActiva.getIdEmpleado()));
+		model.put("jefe", ActividadController.EmpleadoCActiva.getJefe());
 		return "Mensajeria_Jefe"; //"bienvenido" es una pagina del frontend.
 	}
-	@RequestMapping("/Empleado")
-	public String irPaginaEmpleado() {
+	@RequestMapping("/Empleado/{id}")
+	public String irPaginaEmpleado(Map<String, Object> model, @PathVariable int id) {
+		idEmpleado=id;
+		model.put("listMensajes", eService.mensajesEmpleadoyJefe(id));
+		model.put("jefe", ActividadController.JefeCActiva);
 		return "Mensajeria_Empleado"; //"bienvenido" es una pagina del frontend.
 	}
 	
 	@RequestMapping("/Enviar_Jefe")
-	public String irPaginaMensaje() {
+	public String irPaginaMensaje(Model model) {
+		model.addAttribute("mensaje", new Mensajes());
 		return "Mensaje_Jefe"; //"bienvenido" es una pagina del frontend.
 	}
 	@RequestMapping("/Enviar_Empleado")
-	public String irPaginaJefe() {
+	public String irPaginaJefe(Model model) {
+		model.addAttribute("mensaje", new Mensajes());
 		return "Mensaje_Empleado"; //"bienvenido" es una pagina del frontend.
 	}
 	
@@ -52,35 +66,60 @@ public class MensajeController {
 		return "listMensajes"; //"listMensajes" es una pagina del frontend.
 	}
 	
-	@RequestMapping("/irRegistrar")
-	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("mensaje", new Mensajes());
-		return "mensaje"; //"mensaje" es una pagina del frontend para insertar y/o modificar.
-	}
-	
-	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Mensajes objMensaje, BindingResult binRes, Model model) throws ParseException{
+	@RequestMapping("/registrarMensajeJefe")
+	public String registrarMensajeJefe(@ModelAttribute Mensajes objMensaje, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
 		{
 			return "mensaje";
 		}
 		else {
+			Date fechaactual= new Date();
+			objMensaje.setFechaMensaje(fechaactual);
+			objMensaje.setEmpleado(ActividadController.EmpleadoCActiva);
+			objMensaje.setEmisor_correo(ActividadController.EmpleadoCActiva.getCorreo());
+			objMensaje.setReceptor_correo(ActividadController.EmpleadoCActiva.getJefe().getCorreo());
 			boolean flag = eService.grabar(objMensaje);
 			if(flag)
-				return "redirect:/mensaje/listar";
+				return "redirect:/mensaje/Jefe";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un accidente, LUZ ROJA");
-				return "redirect:/mensaje/irRegistrar";
+				return "redirect:/mensaje/Enviar_Jefe";
 			}
 		}
 	}
+	
+	@RequestMapping("/registrarMensajeEmpleado")
+	public String registrarMensajeEmpleado(@ModelAttribute Mensajes objMensaje, BindingResult binRes, Model model) throws ParseException{
+		if(binRes.hasErrors())
+		{
+			return "mensaje";
+		}
+		else {
+			Date fechaactual= new Date();
+			objMensaje.setFechaMensaje(fechaactual);
+			Optional<Empleado> objEmpleado= emService.listarId(idEmpleado);
+			objMensaje.setEmpleado(objEmpleado.get());
+			objMensaje.setReceptor_correo(objEmpleado.get().getCorreo());
+			objMensaje.setEmisor_correo(ActividadController.JefeCActiva.getCorreo());
+			boolean flag = eService.grabar(objMensaje);
+			if(flag)
+			{
+				return "redirect:/jefe/empleados";
+			}
+			else {
+				model.addAttribute("mensaje", "Ocurrio un accidente, LUZ ROJA");
+				return "redirect:/mensaje/Enviar_Empleado";
+			}
+		}
+	}
+	
 	
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) throws ParseException{
 		Optional<Mensajes> objMensaje = eService.listarId(id);
 		if(objMensaje == null) {
 			objRedir.addFlashAttribute("mensaje","Ocurrio un roche, LUZ ROJA");
-			return "redirect:/mensaje/listar";
+			return "redirect:/mensaje/Empleado";
 		}
 		else {
 			if(objMensaje.isPresent())
@@ -111,6 +150,7 @@ public class MensajeController {
 		model.put("listaMensajes", eService.listar());
 		return "listEMensajes";
 	}
+	
 	
 	@RequestMapping("/listarId")
 	public String listarId(Map<String, Object> model, @ModelAttribute Mensajes mensaje) throws ParseException 

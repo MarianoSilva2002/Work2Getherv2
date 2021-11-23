@@ -64,21 +64,25 @@
             <div class="col-1"></div>
               <div class="col-10 bg-warning py-3 rounded">
                     <div class="bg-white text-black font-weight-bold rounded">
-                      <p class="text-left">Enviar mensaje al empleado.</p> 
+                      <p class="text-left ml-2 mt-2">Enviar mensaje al empleado.</p> 
+                      <form th:action="@{/mensaje/registrarMensajeEmpleado}" method="post"
+						th:object="${mensaje}">
                       <div class="row "> 
                       <div class="col"></div>
                       <div class="col-10"> 
-                        <div style="background-color:rgb(108, 202, 255);" >
-                          <p>Mensaje del usuario.</p>
-                          <p>Nuestra empresa Tec Group ha creado esta pagina web llamada Work2gether para brindar un ambiente de trabajo en óptimas condiciones, generando transparencia entre los empleados y los supervisores a través de un régimen estadístico sobre su desempeño en ciertas áreas.</p>
-                        </div>
+                        <div style="background-color: rgb(108, 202, 255);">
+									<p>Mensaje del usuario.</p>
+									<textarea name="message" rows="5" th:field="*{Mensaje}"
+										style="background-color: rgb(108, 202, 255); border: 0"
+										class="form-control" placeholder="Escriba Mensaje al Empleado"></textarea>
+								</div>
                       </div>
                       <div class="col"></div>
                       </div> 
-                         <a type="button" th:href="@{/mensaje/Empleado}"class="align-content-end btn btn-danger">Cancelar</a>  
-                          <button type="button" class="align-content-end btn btn-primary">Enviar</button>
+                         <a type="button" th:href="@{/mensaje/Jefe}"class="align-content-end btn btn-danger">Cancelar</a>  
+                          <button type="submit" class="align-content-end btn btn-primary">Enviar</button>
                           <br><br>
-                          
+                       </form>
                   </div>
               </div>
             <div class="col-1"></div>

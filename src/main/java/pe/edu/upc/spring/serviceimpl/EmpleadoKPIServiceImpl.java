@@ -66,6 +66,12 @@ public class EmpleadoKPIServiceImpl implements IEmpleadoKPIService{
 	public List<Empleado_KPI> buscarEmpleado(String empleado) {
 		return vEmpleado_KPI.buscarEmpleado(empleado);
 	}
+
+
+	@Override
+	public List<Empleado_KPI> filtroKPIs(String mes, int anio, int empleado) {
+		return vEmpleado_KPI.filtroKPIs(mes, anio, empleado);
+	}
 	
 }
 

@@ -70,6 +70,7 @@
 	<br>
 	<br>
 	<br>
+	
 	<div class="container">
 
 		
@@ -82,7 +83,7 @@
 					<tr>
 						<th>Nombre</th>
 						<th>Descripcion</th>
-						<th>Horas Estimadas</th>
+						<th>Horas Invertidas</th>
 						<th>Fecha Límite</th>
 						<th>Estado</th>
 						<th>Prioridad</th>
@@ -93,7 +94,7 @@
 					<tr th:each="a: ${listaActividades}">
 						<td th:text="${a.Nombre}"></td>
 						<td th:text="${a.Descripcion}"></td>
-						<td th:text="${a.HorasEstimadas}"></td>	
+						<td th:text="${a.HorasInvertidas}"></td>	
 						<td th:text="${#dates.format(a.FechaLimite,'dd/MM/yyyy')}"></td>
 						<td th:text="${a.Estado}"></td>
 						<td th:text="${a.Prioridad}"></td>

@@ -20,5 +20,10 @@ public interface IMensajeRepository extends JpaRepository<Mensajes, Integer>{
 	
 	@Query("from Mensajes e where e.Receptor_correo like %:Receptor_correo%")
 	List<Mensajes> receptorCorreo(@Param("Receptor_correo") String Receptor_correo);
+	
+	@Query("from Mensajes e where e.Receptor_correo like %:Receptor_correo%")
+	List<Mensajes> pantalladeJefeaEmpleado(@Param("Receptor_correo") String Receptor_correo);
 
+	@Query("from Mensajes e where e.empleado.idEmpleado =:idEmpleado")
+	List<Mensajes> mensajesEmpleadoyJefe(@Param("idEmpleado") int idEmpleado);
 }

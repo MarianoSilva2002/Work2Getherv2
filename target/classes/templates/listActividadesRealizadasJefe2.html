@@ -14,7 +14,12 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js">
 		</script>
-
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
+		<script type="text/javascript">
+   	 		$(document).ready(function(){
+    			    $("#myModal").modal('show');
+   			 });
+			</script>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 <link rel="stylesheet" th:href="@{/css/all.min.css}">
 <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -55,7 +60,7 @@
 			<div class="container">
 				<div class="bg-warning pt-3 px-3 pb-1 rounded">
 					<div class="bg-white text-black font-weight-bold rounded pt-1">
-						<p>EMPLEADOS</p>
+						<p>ACTIVIDADES</p>
 					</div>
 				</div>
 			</div>
@@ -63,29 +68,71 @@
 	</div>
 
 
-	<div class="container text-center"></div>
-	<br>
-	<br>
-	<br>
-	<div class="container">
-		<br> <br>
-		<div class="row">
-			<div class="col-2 my-2" th:each="a: ${listaEmpleados}">
-				<img class="img-fluid rounded-circle" th:src="@{/img/persona.png}"
-					alt="Imagen de Persona"
-					style="background-color: rgb(255, 193, 7, 0.5)">
-				<h6
-					th:text="${a.Nombre} + ' ' + ${a.aPaterno} + ' ' + ${a.aMaterno}"
-					class="text-center my-3"></h6>
-				<a type="button" class="btn btn-block"
-					style="background-color: rgb(255, 193, 7)"
-					th:href="@{/mensaje/Empleado/} + ${a.idEmpleado}">Chat</a>
-
-			</div>
-		</div>
+	<div class="container text-center">
+		<a type="button" class="btn btn-primary" th:href="@{/actividad/}">Actividades Pendientes</a>
+		<a type="button" class="btn btn-primary" th:href="@{/actividad/Realizadas}">Actividades Realizadas</a>
 	</div>
 	<br>
 	<br>
+	<br>
+	<div class="modal fade" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title text-danger">ALERTA</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div>
+								<h4 class="text-center">No hay Actividades Realizadas</h4>
+						</div>
+					</div>
+
+					
+				</div>
+			</div>
+		</div>
+	<div class="container">
+
+		
+		<br> <br>
+		
+		<div class="table-responsive text-center">
+			<table id="example" style="width: 100%"
+				class="table table-hover table-bordered">
+				<thead style="background-color: rgb(255, 193, 7);">
+					<tr>
+						<th>Nombre</th>
+						<th>Descripcion</th>
+						<th>Horas Invertidas</th>
+						<th>Fecha Límite</th>
+						<th>Estado</th>
+						<th>Prioridad</th>
+						<th>Empleado</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="a: ${listaActividades}">
+						<td th:text="${a.Nombre}"></td>
+						<td th:text="${a.Descripcion}"></td>
+						<td th:text="${a.HorasInvertidas}"></td>	
+						<td th:text="${#dates.format(a.FechaLimite,'dd/MM/yyyy')}"></td>
+						<td th:text="${a.Estado}"></td>
+						<td th:text="${a.Prioridad}"></td>
+						<td th:text="${a.empleado.Nombre}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<br>
+	<br>
+	
 	<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
