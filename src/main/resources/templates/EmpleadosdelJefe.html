@@ -75,7 +75,7 @@
 		 	<div class="col-2 my-2" th:each="a: ${listaEmpleados}"> 
 		 		<img class="img-fluid rounded-circle" th:src="@{/img/persona.png}" alt="Imagen de Persona" style="background-color: rgb(255, 193, 7,0.5)">
 		 		<h6 th:text="${a.Nombre} + ' ' + ${a.aPaterno} + ' ' + ${a.aMaterno}" class="text-center my-3"></h6>
-		 		<a th:href="@{/mensaje/Empleado}" type="button" class="btn btn-block" style="background-color: rgb(255, 193, 7)">Chat</a>
+		 		<a th:href="@{/mensaje/Empleado/}+${a.idEmpleado}" type="button" class="btn btn-block" style="background-color: rgb(255, 193, 7)">Chat</a>
 			</div>
 		</div>
 	</div>
