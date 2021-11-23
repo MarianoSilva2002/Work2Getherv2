@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Empleado")
@@ -21,21 +24,28 @@ public class Empleado implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idEmpleado;
 	
+	@NotEmpty
 	@Column(name="nombre", nullable = false, length = 60)
 	private String nombre;
 	
+	@NotEmpty
 	@Column(name="apellidoPaterno", nullable = false, length = 60)
 	private String aPaterno;
 	
+	@NotEmpty
 	@Column(name="apellidoMaterno", nullable = false, length = 60)
 	private String aMaterno;
 	
+	@NotEmpty
 	@Column(name="genero", nullable = false, length = 50)
 	private String genero;
 	
+	@NotEmpty
+	@Email
 	@Column(name="correo", nullable = false, length = 60)
 	private String correo;
 	
+	@NotEmpty
 	@Column(name="contrasena", nullable = false, length = 60)
 	private String contrasena;
 	

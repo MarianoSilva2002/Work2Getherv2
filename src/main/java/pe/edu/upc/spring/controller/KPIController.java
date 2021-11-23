@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +48,7 @@ public class KPIController {
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute KPI objKPI, BindingResult binRes, Model model) throws ParseException{
+	public String registrar(@Valid @ModelAttribute ("kpi") KPI objKPI, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
 		{
 			return "kpi";
