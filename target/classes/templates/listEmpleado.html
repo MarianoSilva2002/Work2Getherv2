@@ -87,11 +87,6 @@
 									class="table table-hover table-bordered">
 									<thead style="background-color: rgb(255, 193, 7);">
 										<tr>
-											<form action="/action_page.php">
-												<label for="Calendario">Calendario:</label> <input
-													type="date" id="Calendario" name="Calendario"> <input
-													type="submit">
-											</form>
 
 											<th>Numero de documento</th>
 											<th>Documento</th>
@@ -103,7 +98,7 @@
 
 									</thead>
 									<tbody>
-										<tr th:each="a: ${listaKPIs}">
+										<tr th:each="a: ${listaActividades}">
 											<td th:text="${a.Nombre}"></td>
 											<td th:text="${a.Descripcion}"></td>
 											<td th:text="${a.Prioridad}"></td>
