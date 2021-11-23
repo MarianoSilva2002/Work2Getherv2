@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.Roles;
+import pe.edu.upc.spring.model.Actividad;
 import pe.edu.upc.spring.model.Empleado;
 import pe.edu.upc.spring.model.Jefe;
 
@@ -81,7 +84,7 @@ public class EmpleadoController {
 	
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Empleado objEmpleado, BindingResult binRes, Model model) throws ParseException{
+	public String registrar(@Valid @ModelAttribute("empleado") Empleado objEmpleado, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
 		{
 			model.addAttribute("listaJefes", eService.listar());

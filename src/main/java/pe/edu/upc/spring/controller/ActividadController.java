@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -118,11 +120,12 @@ public class ActividadController {
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Actividad objActividad, BindingResult binRes, Model model) throws ParseException{
+	public String registrar(@Valid @ModelAttribute("actividad") Actividad objActividad, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
 		{
 			model.addAttribute("listaEmpleados", eService.EmpleadosdelJefe(JefeCActiva.getIdJefe()));
 			model.addAttribute("listaTiempoActividad", taService.listar());
+			
 			return "actividad";
 		}
 		else {

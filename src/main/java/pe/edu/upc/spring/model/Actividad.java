@@ -15,7 +15,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,10 +31,14 @@ public class Actividad implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idActividad;
 	
-	@Column(name="Nombre", nullable = false, length = 60)
+	@NotEmpty
+	@Size(min=4, max=20)
+	@Column(name="Nombre")
 	private String Nombre;
 	
-	@Column(name="Descripcion", nullable = false, length = 1000)
+	@NotEmpty
+	@Size(min=10, max=60)
+	@Column(name="Descripcion")
 	private String Descripcion;
 	
 	@Column(name="HorasEstimadas", nullable = false)
@@ -41,11 +47,12 @@ public class Actividad implements Serializable{
 	@Column(name="HorasInvertidas", nullable = true)
 	private long HorasInvertidas;
 	
+	@NotNull(message = "La fecha es obligatoria")
+	@Future(message = "La fecha debe estar en el futuro")
 	@Temporal(TemporalType.DATE)
 	@Column(name="FechaLimite", nullable = false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date FechaLimite;
-	
 	
 	@Column(name="Prioridad", nullable = false, length = 3)
 	private String Prioridad;
