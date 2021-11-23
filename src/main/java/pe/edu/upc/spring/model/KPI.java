@@ -21,7 +21,7 @@ public class KPI implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idKPI;
 	
-	@NotEmpty
+	@NotEmpty(message="El nombre del KPI es necesario")
 	@Column(name="Nombre", nullable = false, length = 60)
 	private String Nombre;
 	

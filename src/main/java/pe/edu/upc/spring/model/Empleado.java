@@ -24,28 +24,28 @@ public class Empleado implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idEmpleado;
 	
-	@NotEmpty
+	@NotEmpty(message="Su nombre es necesario")
 	@Column(name="nombre", nullable = false, length = 60)
 	private String nombre;
 	
-	@NotEmpty
+	@NotEmpty(message="Su apellido P. es necesario")
 	@Column(name="apellidoPaterno", nullable = false, length = 60)
 	private String aPaterno;
 	
-	@NotEmpty
+	@NotEmpty(message="Su apellido M. es necesario")
 	@Column(name="apellidoMaterno", nullable = false, length = 60)
 	private String aMaterno;
 	
-	@NotEmpty
+	@NotEmpty(message="Su genero es necesario")
 	@Column(name="genero", nullable = false, length = 50)
 	private String genero;
 	
-	@NotEmpty
-	@Email
+	@NotEmpty (message="Su correo es necesario")
+	@Email(message="La direcccion de correo no es valida")
 	@Column(name="correo", nullable = false, length = 60)
 	private String correo;
 	
-	@NotEmpty
+	@NotEmpty(message="La contraseña es necesaria")
 	@Column(name="contrasena", nullable = false, length = 60)
 	private String contrasena;
 	
