@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,7 @@ import pe.edu.upc.spring.service.IEmpleadoService;
 import pe.edu.upc.spring.service.IEmpresaService;
 import pe.edu.upc.spring.service.IJefeService;
 import pe.edu.upc.spring.service.IRolesService;
+import pe.edu.upc.spring.service.IActividadService;
 
 @Controller
 @RequestMapping("/jefe")
@@ -41,9 +44,12 @@ public class JefeController {
 	@Autowired
 	private IEmpleadoService emService;
 	
+	@Autowired
+	private IActividadService aService;
 	
 	@RequestMapping("/bienvenido")
-	public String irPaginaBienvenida() {
+	public String irPaginaBienvenida(Model model) {
+		model.addAttribute("listaActividades", aService.actividadesCreadasporJefe(ActividadController.JefeCActiva.getIdJefe()));
 		return "listJefe"; //"bienvenido" es una pagina del frontend.
 	}
 	
@@ -85,13 +91,13 @@ public class JefeController {
 		}
 		else {
 			ActividadController.JefeCActiva =FiltroJefe.get(0);
-			return "listJefe";
+			return "redirect:/jefe/bienvenido";
 		}
 		
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Jefe objJefe, BindingResult binRes, Model model) throws ParseException{
+	public String registrar(@Valid @ModelAttribute Jefe objJefe, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
 		{
 			model.addAttribute("listaEmpresas", eService.listar());

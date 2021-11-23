@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,6 +95,7 @@ public class ActividadController {
     		return "Actividades_Pendientes"; //"bienvenido" es una pagina del frontend
         }
 	}
+	
 	@RequestMapping("/")
 	public String irPaginaListadoJefes(Map<String, Object> model, Model modelo) {
 		model.put("listaActividades", aService.actividadesCreadasporJefe(JefeCActiva.getIdJefe()));
@@ -127,11 +130,12 @@ public class ActividadController {
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Actividad objActividad, BindingResult binRes, Model model) throws ParseException{
+	public String registrar(@Valid @ModelAttribute("actividad") Actividad objActividad, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
 		{
 			model.addAttribute("listaEmpleados", eService.EmpleadosdelJefe(JefeCActiva.getIdJefe()));
 			model.addAttribute("listaTiempoActividad", taService.listar());
+			
 			return "actividad";
 		}
 		else {
@@ -169,14 +173,14 @@ public class ActividadController {
 		try {
 			if(id!=null && id>0) {
 				aService.eliminar(id);
-				model.put("listaActividades", aService.actividadesRealizadasCreadasporJefe(JefeCActiva.getIdJefe()));
+				model.put("listaActividades", aService.actividadesCreadasporJefe(JefeCActiva.getIdJefe()));
 				modelo.addAttribute("actividad", new Actividad());
 			}
 		}
 		catch(Exception ex){
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
-			model.put("listaActividades", aService.actividadesRealizadasCreadasporJefe(JefeCActiva.getIdJefe()));
+			model.put("listaActividades", aService.actividadesCreadasporJefe(JefeCActiva.getIdJefe()));
 			modelo.addAttribute("actividad", new Actividad());
 		}
 		return "listActividades";

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="KPI")
@@ -20,6 +21,7 @@ public class KPI implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idKPI;
 	
+	@NotEmpty(message="El nombre del KPI es necesario")
 	@Column(name="Nombre", nullable = false, length = 60)
 	private String Nombre;
 	

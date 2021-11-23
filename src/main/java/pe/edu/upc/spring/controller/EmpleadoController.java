@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +19,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.Roles;
+import pe.edu.upc.spring.model.Actividad;
 import pe.edu.upc.spring.model.Empleado;
 import pe.edu.upc.spring.model.Jefe;
 
 import pe.edu.upc.spring.service.IJefeService;
+import pe.edu.upc.spring.service.IActividadService;
 import pe.edu.upc.spring.service.IEmpleadoService;
 import pe.edu.upc.spring.service.IRolesService;
+import pe.edu.upc.spring.service.IKPIService;
+
 
 @Controller
 @RequestMapping("/empleado")
@@ -37,8 +43,12 @@ public class EmpleadoController {
 	@Autowired
 	private IEmpleadoService jService;
 	
+	@Autowired
+	private IActividadService aService;
+	
 	@RequestMapping("/bienvenido")
-	public String irPaginaBienvenida() {
+	public String irPaginaBienvenida(Model model) {
+		model.addAttribute("listaActividades", aService.actividadesCreadasporEmpleado(ActividadController.EmpleadoCActiva.getIdEmpleado()));
 		return "listEmpleado"; //"bienvenido" es una pagina del frontend...
 	}
 	
@@ -74,14 +84,14 @@ public class EmpleadoController {
 		}
 		else {
 			ActividadController.EmpleadoCActiva =FiltroEmpleado.get(0);
-			return "listEmpleado";
+			return "redirect:/empleado/bienvenido";
 		}
 		
 	}
 	
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Empleado objEmpleado, BindingResult binRes, Model model) throws ParseException{
+	public String registrar(@Valid @ModelAttribute("empleado") Empleado objEmpleado, BindingResult binRes, Model model) throws ParseException{
 		if(binRes.hasErrors())
 		{
 			model.addAttribute("listaJefes", eService.listar());

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="Jefe")
@@ -21,21 +23,28 @@ public class Jefe implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idJefe;
 	
+	@NotEmpty(message="Su nombre es necesario")
 	@Column(name="nombre", nullable = false, length = 60)
 	private String nombre;
 	
+	@NotEmpty(message="Su apellido P. es necesario")
 	@Column(name="apellidoPaterno", nullable = false, length = 60)
 	private String aPaterno;
 	
+	@NotEmpty(message="Su apellido M. es necesario")
 	@Column(name="apellidoMaterno", nullable = false, length = 60)
 	private String aMaterno;
 	
+	@NotEmpty(message="Su genero es necesario")
 	@Column(name="genero", nullable = false, length = 50)
 	private String genero;
 	
+	@NotEmpty (message="Su correo es necesario")
+	@Email(message="La direcccion de correo no es valida")
 	@Column(name="correo", nullable = false, length = 60)
 	private String correo;
 	
+	@NotEmpty(message="La contraseña es necesaria")
 	@Column(name="contrasena", nullable = false, length = 60)
 	private String contrasena;
 	

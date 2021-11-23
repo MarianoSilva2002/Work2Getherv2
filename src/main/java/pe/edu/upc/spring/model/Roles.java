@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="Roles")
@@ -19,9 +20,11 @@ public class Roles implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idRol;
 	
+	@NotEmpty(message="El nombre del rol es necesario")
 	@Column(name="Nombre", nullable = false, length = 60)
 	private String Nombre;
 	
+	@NotEmpty(message="La descripcion del rol es necesaria")
 	@Column(name="Descripcion", nullable = false, length = 200)
 	private String Descripcion;
 
