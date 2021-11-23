@@ -9,7 +9,7 @@ public interface IActividadService {
 
 	public boolean grabar(Actividad actividad);
 	public void eliminar(int idActividad);
-	public Optional<Actividad> listarId(int idActividad);
+	public Actividad listarId(int idActividad);
 	public List<Actividad> listar();
 	public List<Actividad> buscarNombre(String nombre);
 	public List<Actividad> buscarEstado(String estado);
