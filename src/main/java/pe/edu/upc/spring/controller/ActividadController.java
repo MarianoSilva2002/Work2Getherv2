@@ -83,7 +83,7 @@ public class ActividadController {
 	@RequestMapping("/APendientes")
 	public String APendientes(Map<String, Object> model, Model modelo) {
 		List<Actividad> listaActividades;
-        listaActividades= aService.actividadesRealizadasporEmpleado(EmpleadoCActiva.getIdEmpleado());
+        listaActividades= aService.actividadesCreadasporEmpleado(EmpleadoCActiva.getIdEmpleado());
         if(listaActividades.isEmpty())
         {
             return "No_Actividades_2";
@@ -95,6 +95,7 @@ public class ActividadController {
     		return "Actividades_Pendientes"; //"bienvenido" es una pagina del frontend
         }
 	}
+	
 	@RequestMapping("/")
 	public String irPaginaListadoJefes(Map<String, Object> model, Model modelo) {
 		model.put("listaActividades", aService.actividadesCreadasporJefe(JefeCActiva.getIdJefe()));
