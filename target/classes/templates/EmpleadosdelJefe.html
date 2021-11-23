@@ -63,24 +63,19 @@
 	</div>
 
 
-	<div class="container text-center"></div>
+	<div class="container text-center">
+	</div>
 	<br>
 	<br>
 	<br>
 	<div class="container">
-		<br> <br>
+		<br>
+		<br>
 		<div class="row">
-			<div class="col-2 my-2" th:each="a: ${listaEmpleados}">
-				<img class="img-fluid rounded-circle" th:src="@{/img/persona.png}"
-					alt="Imagen de Persona"
-					style="background-color: rgb(255, 193, 7, 0.5)">
-				<h6
-					th:text="${a.Nombre} + ' ' + ${a.aPaterno} + ' ' + ${a.aMaterno}"
-					class="text-center my-3"></h6>
-				<a type="button" class="btn btn-block"
-					style="background-color: rgb(255, 193, 7)"
-					th:href="@{/mensaje/Empleado/} + ${a.idEmpleado}">Chat</a>
-
+		 	<div class="col-2 my-2" th:each="a: ${listaEmpleados}"> 
+		 		<img class="img-fluid rounded-circle" th:src="@{/img/persona.png}" alt="Imagen de Persona" style="background-color: rgb(255, 193, 7,0.5)">
+		 		<h6 th:text="${a.Nombre} + ' ' + ${a.aPaterno} + ' ' + ${a.aMaterno}" class="text-center my-3"></h6>
+		 		<a th:href="@{/mensaje/Empleado/}+${a.idEmpleado}" type="button" class="btn btn-block" style="background-color: rgb(255, 193, 7)">Chat</a>
 			</div>
 		</div>
 	</div>
